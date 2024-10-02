@@ -1,6 +1,10 @@
 # Awesome-Music-Generation
 
-This repository contains the implementation of the music generation model **MMGen**.
+Welcome to MMGen!
+
+This repository contains the implementation of the music generation model **MMGen**, the first novel approach using melody to guide the music generation that, despite a pretty simple method and extremely limited resources, achieves excellent performance.
+
+Anyone can use this model to generate personalized background music for their short videos on platforms like TikTok, YouTube Shorts, and Meta Reels. Additionally, it is very cost-effective to fine-tune the model with your own private music dataset.
 
 ## Demo
 Check out our live demo at [https://awesome-mmgen.github.io/](https://awesome-mmgen.github.io/).
@@ -12,15 +16,15 @@ Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
 https://huggingface.co/ManzhenWei/MMGen
 
 ## Todo List
-- [x] demo website
-- [x] huggingface checkpoints path 
-- [ ] quick start(inference)
-- [ ] dataset download path 
-- [ ] train and fine-tuning code
-- [ ] online free generation service
+- [x] Demo website
+- [x] Huggingface checkpoints
+- [ ] Quick start (Inference)
+- [ ] Training Datasets
+- [ ] Training/fine-tuning code
+- [ ] Online free generation service
+- [ ] Checkpoints on larger datasets
 
-## Future Releases
-Stay tuned for more code and datasets, which will be released soon.
+
 
 ---
 
