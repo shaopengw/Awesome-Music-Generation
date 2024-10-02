@@ -14,13 +14,13 @@ https://huggingface.co/ManzhenWei/MMGen
 ## Todo List
 - [x] demo website
 - [x] huggingface checkpoints path 
-- [ ] quick start(inferense)
+- [ ] quick start(inference)
 - [ ] dataset download path 
 - [ ] train and fintuing code
 - [ ] online free generation service
 
 ## Future Releases
-Stay tuned for more code and datasets, which will be released in the future.
+Stay tuned for more code and datasets, which will be released soon.
 
 ---
 
