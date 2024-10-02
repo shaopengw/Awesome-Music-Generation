@@ -16,7 +16,7 @@ https://huggingface.co/ManzhenWei/MMGen
 - [x] huggingface checkpoints path 
 - [ ] quick start(inference)
 - [ ] dataset download path 
-- [ ] train and finetuning code
+- [ ] train and fine-tuning code
 - [ ] online free generation service
 
 ## Future Releases
