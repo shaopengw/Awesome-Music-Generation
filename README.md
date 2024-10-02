@@ -11,6 +11,14 @@ Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
 ## Checkpoints
 https://huggingface.co/ManzhenWei/MMGen
 
+## Todo List
+- [x] demo website
+- [x] huggingface checkpoints path 
+- [ ] quick start(inferense)
+- [ ] dataset download path 
+- [ ] train and fintuing code
+- [ ] online free generation service
+
 ## Future Releases
 Stay tuned for more code and datasets, which will be released in the future.
 
