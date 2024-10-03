@@ -12,6 +12,26 @@ Check out our live demo at [https://awesome-mmgen.github.io/](https://awesome-mm
 ## Paper
 Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
 
+## Quick Start
+
+To get started with **MMGen**, follow the steps below:
+
+```bash
+# Step 1: Clone the repository
+git clone https://github.com/shaopengw/Awesome-Music-Generation.git
+cd Awesome-Music-Generation
+
+# Step 2: Create and activate the conda environment
+conda env create -f environment.yml
+conda activate MMGen_quickstart
+
+# Step 3: Grant execution permissions for the quick start script
+chmod +x quick_start.sh
+
+# Step 4: Run the quick start script
+bash quick_start.sh
+```
+
 ## Checkpoints
 https://huggingface.co/ManzhenWei/MMGen
 

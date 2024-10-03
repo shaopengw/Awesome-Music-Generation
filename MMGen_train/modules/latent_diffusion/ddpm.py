@@ -113,7 +113,7 @@ class DDPM(pl.LightningModule):
         self.first_stage_key = first_stage_key
         self.sampling_rate = sampling_rate
         self.clap = CLAPAudioEmbeddingClassifierFreev2(
-            pretrained_path="data/checkpoints/correct_all_data_musicbench_musiccaps_epoch_top_0.pt",
+            pretrained_path="data/checkpoints/mmgen-clmp.pt",
             sampling_rate=self.sampling_rate,
             embed_mode="audio",
             amodel="HTSAT-base",
