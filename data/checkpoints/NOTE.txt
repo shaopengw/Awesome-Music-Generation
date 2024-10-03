@@ -1,0 +1,1 @@
+download checkpoints from https://huggingface.co/ManzhenWei/MMGen
