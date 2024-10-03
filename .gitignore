@@ -1,0 +1,11 @@
+FAISS_experiments/OverlapRate_Experiments_faiss/*.faiss
+/FAISS_experiments/
+*__pycache__
+*.pyc
+MMGen_train/modules/clmp/melody_encoder/melody_encoder/test_data/*
+MMGen_train/modules/latent_diffusion/scann/*
+MMGen_train/modules/latent_diffusion/*.npy
+MMGen_train/modules/latent_diffusion/*.faiss
+data/checkpoints/*
+data/datasets/*
+log/latent_diffusion/quick_start/quick_start/*
