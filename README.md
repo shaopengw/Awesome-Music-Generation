@@ -34,7 +34,7 @@ conda env create -f environment.yml
 conda activate MMGen_quickstart
 ```
 
-### Step 3: Download checkpoints from [\[huggingface\](https://huggingface.co/ManzhenWei/MMGen)](https://huggingface.co/ManzhenWei/MMGen)
+### Step 3: Download checkpoints from [huggingface](https://huggingface.co/ManzhenWei/MMGen)
 ```bash
 # Ensure that the checkpoints are stored in the following directory structure
 Awesome-Music-Generation/

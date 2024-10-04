@@ -1242,7 +1242,7 @@ class LatentDiffusion(DDPM):
                         CLAPAudioEmbeddingClassifierFreev2,
                     ):
                         print(
-                            "Warning: CLAP model normally should use text for evaluation"
+                            "Warning: CLMP model normally should use text for evaluation"
                         )
 
                 # The original data for conditioning
