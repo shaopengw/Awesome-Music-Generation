@@ -16,21 +16,51 @@ Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
 
 To get started with **MMGen**, follow the steps below:
 
+### Step 1: Clone the repository
 ```bash
-# Step 1: Clone the repository
 git clone https://github.com/shaopengw/Awesome-Music-Generation.git
 cd Awesome-Music-Generation
+```
 
-# Step 2: Create and activate the conda environment
+### Step 2: Set up the Conda environment
+```bash
+# Create and activate the environment from the provided environment file
 conda env create -f environment.yml
 conda activate MMGen_quickstart
+```
 
-# Step 3: Grant execution permissions for the quick start script
+### Step 3: Download checkpoints from [\[huggingface\](https://huggingface.co/ManzhenWei/MMGen)](https://huggingface.co/ManzhenWei/MMGen)
+```bash
+# Ensure that the checkpoints are stored in the following directory structure
+Awesome-Music-Generation/
+└── data/
+    └── checkpoints/
+```
+
+### Step 4: Modify the PYTHONPATH environment variables in the quick_start.sh script
+```bash
+# Update the paths to reflect your local environment setup
+# Replace:
+export PYTHONPATH=/mnt/sda/quick_start_demonstration/Awesome-Music-Generation:$PYTHONPATH
+export PYTHONPATH=/mnt/sda/quick_start_demonstration/Awesome-Music-Generation/data:$PYTHONPATH
+# With:
+export PYTHONPATH=/your/local/path/Awesome-Music-Generation:$PYTHONPATH
+export PYTHONPATH=/your/local/path/Awesome-Music-Generation/data:$PYTHONPATH
+```
+
+### Step 5: Assign execution permissions for the script
+```bash
 chmod +x quick_start.sh
-
-# Step 4: Run the quick start script
+```
+### Step 6: Execute the quick start script
+```bash
 bash quick_start.sh
 ```
+### Allow the script to run for several minutes. Upon completion, the results will be available in the following directory:
+```bash
+Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
+```
+
 
 ## Checkpoints
 https://huggingface.co/ManzhenWei/MMGen
@@ -38,7 +68,7 @@ https://huggingface.co/ManzhenWei/MMGen
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
-- [ ] Quick start (Inference)
+- [x] Quick start (Inference)
 - [ ] Training Datasets
 - [ ] Training/fine-tuning code
 - [ ] Online free generation service
