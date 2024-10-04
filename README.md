@@ -9,6 +9,11 @@ Anyone can use this model to generate personalized background music for their sh
 ## Demo
 Check out our live demo at [https://awesome-mmgen.github.io/](https://awesome-mmgen.github.io/).
 
+## Online Service
+Now you can try music generation with your own prompt on our [Website](https://www.mmgen.online/).
+
+Tips: To generate high-quality music using MMGen, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements. 
+
 ## Paper
 Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
 
@@ -71,7 +76,7 @@ https://huggingface.co/ManzhenWei/MMGen
 - [x] Quick start (Inference)
 - [ ] Training Datasets
 - [ ] Training/fine-tuning code
-- [ ] Online free generation service
+- [x] Online free generation service
 - [ ] Checkpoints on larger datasets
 
 
@@ -83,7 +88,7 @@ Feel free to explore the repository and contribute!
 ## Citation
 
 ```bibtex
-@misc{wei2024melodyneedmusicgeneration,
+@article{wei2024melodyneedmusicgeneration,
       title={Melody Is All You Need For Music Generation}, 
       author={Shaopeng Wei and Manzhen Wei and Haoyu Wang and Yu Zhao and Gang Kou},
       year={2024},
