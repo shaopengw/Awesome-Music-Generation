@@ -1,24 +1,37 @@
 # Awesome-Music-Generation
+## Welcome to MMGen!
+### Try our demo first! 
+&ensp; &rarr; &ensp; 
+<a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MMGen&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
 
-Welcome to MMGen!
+&ensp; &rarr; &ensp; 
+<a href="https://arxiv.org/abs/2409.20196"><img src="https://img.shields.io/static/v1?label=Paper&message=arXiv.2409&color=red&logo=arXiv"></a> &ensp; &larr; &ensp; Click here!
 
+
+&ensp; &rarr; &ensp; 
+<a href="https://huggingface.co/ManzhenWei/MMGen"><img src="https://img.shields.io/static/v1?label=CKPT&message=huggingface&color=yellow&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here!  
 This repository contains the implementation of the music generation model **MMGen**, the first novel approach using melody to guide the music generation that, despite a pretty simple method and extremely limited resources, achieves excellent performance.
 
 Anyone can use this model to generate personalized background music for their short videos on platforms like TikTok, YouTube Shorts, and Meta Reels. Additionally, it is very cost-effective to fine-tune the model with your own private music dataset.
 
-## Demo
-Check out our live [Demo](https://awesome-mmgen.github.io/).
+## Video
+You can watch the introduction video on  
+
+&ensp; &rarr; &ensp; 
+<a href="https://youtu.be/kc2n-ByWB-M?si=U-gjvAuBjD-HOtS7"><img src="https://img.shields.io/static/v1?label=Watch&message=YouTube&color=red&logo=youtube"></a> &ensp; &larr; &ensp; Click here!
+
+&ensp; &rarr; &ensp; 
+<a href="https://www.bilibili.com/video/BV1K84FeBEqo/?share_source=copy_web&vd_source=d808713ed70be6b862e6ccbcb28d2f5b"><img src="https://img.shields.io/static/v1?label=Watch&message=Bilibili&color=blue&logo=bilibili"></a> &ensp; &larr; &ensp; Click here!
 
 ## Online Service
-Now you can try music generation with your own prompt on our [Website](https://www.mmgen.online/).
 
-Tips: To generate high-quality music using MMGen, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements. 
+Now you can try music generation with your own prompt on our   
 
-## Paper
-Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
+&ensp; &rarr; &ensp; 
+<a href="https://www.mmgen.online/"><img src="https://img.shields.io/static/v1?label=Try it&message=MMGen Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
 
-## Viedo
-You can watch the introduction viedo on [YouTube](https://youtu.be/kc2n-ByWB-M?si=U-gjvAuBjD-HOtS7) or [Bilibili](https://www.bilibili.com/video/BV1K84FeBEqo/?share_source=copy_web&vd_source=d808713ed70be6b862e6ccbcb28d2f5b). 
+**Tips**: To generate high-quality music using MMGen, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements.
+
 
 ## Quick Start
 
