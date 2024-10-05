@@ -93,7 +93,19 @@ Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 - [ ] Checkpoints on larger datasets
 
 ---
-Feel free to explore the repository and contribute!
+### Feel free to explore the repository and contribute!
+---
+## Acknowledgement
+
+We sincerely acknowledge the developers of the following open-source code bases. These resources are invaluable sparks that ignite innovation and progress in the real world 🎆!
+
+- [https://github.com/CompVis/stable-diffusion](https://github.com/CompVis/stable-diffusion)
+- [https://github.com/haoheliu/AudioLDM-training-finetuning](https://github.com/haoheliu/AudioLDM-training-finetuning)
+- [https://github.com/LAION-AI/CLAP](https://github.com/LAION-AI/CLAP)
+- [https://github.com/jik876/hifi-gan](https://github.com/jik876/hifi-gan)
+- [https://github.com/facebookresearch/faiss](https://github.com/facebookresearch/faiss)
+
+>The research is supported by the Key Technologies Research and Development Program under Grant No. 2020YFC0832702, and National Natural Science Foundation of China under Grant Nos. 71910107002, 62376227, 61906159, 62302400, 62176014, and Sichuan Science and Technology Program under Grant No. 2023NSFSC0032, 2023NSFSC0114, and Guanghua Talent Project of Southwestern University of Finance and Economics.
 
 ## Citation
 
