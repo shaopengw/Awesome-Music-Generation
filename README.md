@@ -7,7 +7,7 @@ This repository contains the implementation of the music generation model **MMGe
 Anyone can use this model to generate personalized background music for their short videos on platforms like TikTok, YouTube Shorts, and Meta Reels. Additionally, it is very cost-effective to fine-tune the model with your own private music dataset.
 
 ## Demo
-Check out our live demo at [https://awesome-mmgen.github.io/](https://awesome-mmgen.github.io/).
+Check out our live [Demo](https://awesome-mmgen.github.io/).
 
 ## Online Service
 Now you can try music generation with your own prompt on our [Website](https://www.mmgen.online/).
@@ -16,6 +16,9 @@ Tips: To generate high-quality music using MMGen, you would want to craft detail
 
 ## Paper
 Read our research paper on [arXiv](https://arxiv.org/abs/2409.20196).
+
+## Viedo
+You can watch the introduction viedo on [YouTube](https://youtu.be/kc2n-ByWB-M?si=U-gjvAuBjD-HOtS7) or [Bilibili](https://www.bilibili.com/video/BV1K84FeBEqo/?share_source=copy_web&vd_source=d808713ed70be6b862e6ccbcb28d2f5b). 
 
 ## Quick Start
 
