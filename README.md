@@ -83,9 +83,6 @@ Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
 
 
-## Checkpoints
-https://huggingface.co/ManzhenWei/MMGen
-
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
@@ -95,10 +92,7 @@ https://huggingface.co/ManzhenWei/MMGen
 - [x] Online free generation service
 - [ ] Checkpoints on larger datasets
 
-
-
 ---
-
 Feel free to explore the repository and contribute!
 
 ## Citation
