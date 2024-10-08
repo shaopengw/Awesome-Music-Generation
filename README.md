@@ -1,3 +1,4 @@
+![banner](MMGen_banner.jpg)
 # Awesome-Music-Generation
 ## Welcome to MMGen!
 ### Try our demo first! 
