@@ -1,5 +1,5 @@
-![banner](MMGen_banner.jpg)
-# Awesome-Music-Generation
+# Awesome-Music-Generation  
+![banner](MMGen_banner.jpg)  
 ## Welcome to MMGen!
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
