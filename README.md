@@ -1,6 +1,6 @@
 # Awesome-Music-Generation  
-![banner](MMGen_banner.jpg)  
-## Welcome to MMGen!
+![banner](MMGen_banner.png)  
+## Welcome to MMGen<sup>2</sup>!
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
 <a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MMGen&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
