@@ -1,9 +1,9 @@
 # Awesome-Music-Generation  
 ![banner](MMGen_banner.png)  
-## Welcome to MMGen<sup>2</sup>!
+## Welcome to MG<sup>2</sup>!
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
-<a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MG2&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
+<a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MG²&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
 
 &ensp; &rarr; &ensp; 
 <a href="https://arxiv.org/abs/2409.20196"><img src="https://img.shields.io/static/v1?label=Paper&message=arXiv.2409&color=red&logo=arXiv"></a> &ensp; &larr; &ensp; Click here!
@@ -29,7 +29,7 @@ You can watch the introduction video on
 Now you can try music generation with your own prompt on our   
 
 &ensp; &rarr; &ensp; 
-<a href="https://mg2.vip.cpolar.cn/"><img src="https://img.shields.io/static/v1?label=Try it&message=MG2 Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
+<a href="https://mg2.vip.cpolar.cn/"><img src="https://img.shields.io/static/v1?label=Try it&message=MG² Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
 
 **Tips**: To generate high-quality music using MG<sup>2</sup>, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements.
 
