@@ -3,7 +3,7 @@
 ## Welcome to MMGen<sup>2</sup>!
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
-<a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MMGen&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
+<a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MG2&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
 
 &ensp; &rarr; &ensp; 
 <a href="https://arxiv.org/abs/2409.20196"><img src="https://img.shields.io/static/v1?label=Paper&message=arXiv.2409&color=red&logo=arXiv"></a> &ensp; &larr; &ensp; Click here!
@@ -11,7 +11,7 @@
 
 &ensp; &rarr; &ensp; 
 <a href="https://huggingface.co/ManzhenWei/MMGen"><img src="https://img.shields.io/static/v1?label=CKPT&message=huggingface&color=yellow&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here!  
-This repository contains the implementation of the music generation model **MMGen<sup>2</sup>**, the first novel approach using melody to guide the music generation that, despite a pretty simple method and extremely limited resources, achieves excellent performance.
+This repository contains the implementation of the music generation model **MG<sup>2</sup>**, the first novel approach using melody to guide the music generation that, despite a pretty simple method and extremely limited resources, achieves excellent performance.
 
 Anyone can use this model to generate personalized background music for their short videos on platforms like TikTok, YouTube Shorts, and Meta Reels. Additionally, it is very cost-effective to fine-tune the model with your own private music dataset.
 
@@ -29,14 +29,14 @@ You can watch the introduction video on
 Now you can try music generation with your own prompt on our   
 
 &ensp; &rarr; &ensp; 
-<a href="https://mg2.vip.cpolar.cn/"><img src="https://img.shields.io/static/v1?label=Try it&message=MMGen Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
+<a href="https://mg2.vip.cpolar.cn/"><img src="https://img.shields.io/static/v1?label=Try it&message=MG2 Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
 
-**Tips**: To generate high-quality music using MMGen<sup>2</sup>, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements.
+**Tips**: To generate high-quality music using MG<sup>2</sup>, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements.
 
 
 ## Quick Start
 
-To get started with **MMGen<sup>2</sup>**, follow the steps below:
+To get started with **MG<sup>2</sup>**, follow the steps below:
 
 ### Step 1: Clone the repository
 ```bash
