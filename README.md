@@ -29,7 +29,7 @@ You can watch the introduction video on
 Now you can try music generation with your own prompt on our   
 
 &ensp; &rarr; &ensp; 
-<a href="https://www.mmgen.online/"><img src="https://img.shields.io/static/v1?label=Try it&message=MMGen Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
+<a href="https://mg2.vip.cpolar.cn/"><img src="https://img.shields.io/static/v1?label=Try it&message=MMGen Website&color=green&logo=googlechrome"></a> &ensp; &larr; &ensp; Click here!
 
 **Tips**: To generate high-quality music using MMGen<sup>2</sup>, you would want to craft detailed and descriptive prompts that provide rich context and specific musical elements.
 
