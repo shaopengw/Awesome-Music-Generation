@@ -1,5 +1,5 @@
 # Awesome-Music-Generation  
-![banner](MMGen_banner.png)  
+![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
