@@ -1271,9 +1271,11 @@ class LatentDiffusion(DDPM):
                 else:
                     cond_dict[cond_model_key] = c
         
-        melody_npy = np.load("/mnt/sda/CLMP/npy_and_faiss/musiccaps/trimmed_npy/musiccaps_melody_362_trimmed.npy")
+        # change the melody_npy and melody.faiss to the local path
+        melody_npy = np.load("MMGen/melody.npy")
         melody_builder = FaissDatasetBuilder(melody_npy)
-        melody_builder.load_index("/mnt/sda/OverlapRate_Experiments/musiccaps_melody_hnsw_M32_efC2048_efS128.faiss")
+        melody_builder.load_index("MMGen/melody.faiss")
+        # change the melody_npy and melody.faiss to the local path
         
         query = cond_dict['film_clap_cond1']
         query = query.cpu().detach().numpy()
@@ -1797,7 +1799,7 @@ class LatentDiffusion(DDPM):
         for i in range(waveform.shape[0]):
             if type(name) is str:
                 
-                max_filename_length = 25  
+                max_filename_length = 30  
                 truncated_name = self.truncate_filename(name, max_filename_length)
                 
                 path = os.path.join(
@@ -1805,7 +1807,7 @@ class LatentDiffusion(DDPM):
                 )
             
             elif type(name) is list:
-                max_filename_length = 25  
+                max_filename_length = 30  
                 truncated_basename = self.truncate_filename(os.path.basename(name[i]), max_filename_length)
 
                 # path = os.path.join(
