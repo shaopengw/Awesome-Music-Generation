@@ -1166,7 +1166,7 @@ class CLAPAudioEmbeddingClassifierFreev2(nn.Module):
         self.sampling_rate = sampling_rate
         self.unconditional_prob = unconditional_prob
         self.random_mute = random_mute
-        self.tokenize = RobertaTokenizer.from_pretrained("/mnt/sda/upload_github/Awesome-Music-Generation/data/checkpoints/Roberta")
+        self.tokenize = RobertaTokenizer.from_pretrained("roberta-base")
         self.max_random_mute_portion = max_random_mute_portion
         self.training_mode = training_mode
         self.model, self.model_cfg = create_model(
