@@ -82,7 +82,9 @@ bash quick_start.sh
 ```bash
 Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
-
+## Dataset
+### MusicSet
+### MelodySet
 
 ## Todo List
 - [x] Demo website
