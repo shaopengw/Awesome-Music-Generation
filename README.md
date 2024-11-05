@@ -85,7 +85,7 @@ Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ## Dataset
 ### MusicSet
 We introduce the new MusicSet dataset, featuring approximately 150,000 high-quality 10-second music-text pairs. The dataset can be accessed at the following URL: https://huggingface.co/datasets/ManzhenWei/MusicSet
-### CLMP training format
+### CLMP training dataset format
 In the training of CLMP, it is necessary to align and train the three dimensions of audio, text-description, and melody-text. We utilize the webdataset format for the training data of audio and text-description, and separately load the melody-text using a dataloader. Within the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset, we have already processed the data into the webdataset format. If you wish to use your own training data and package it into the webdataset format, please refer to the instructions at the following link: https://github.com/webdataset/webdataset
 
 ```bash
@@ -100,10 +100,20 @@ clmp/
         └──valid/
         └──test/
 ```
-### MG<sup>2</sup> training format
+### MG<sup>2</sup> of diffusion training dataset format
 When training MG<sup>2</sup>, it is necessary to convert .flac files to .wav format.
 ```bash
-
+Awesome-Music-Generation/
+└── data/
+    └── dataset/
+       └── wav/xxx.wav
+               xxx.wav
+               ...
+       └── metadata/dataset_root.json
+           └── MusicSet/
+               └── datafiles/train.json
+                             valid.json
+                             test.json
 ```
 ### MelodySet
 
