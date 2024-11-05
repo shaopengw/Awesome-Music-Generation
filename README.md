@@ -153,7 +153,7 @@ Here is an example content for train.json:
 }
 ```
 ### MelodySet
-We have created the MelodySet dataset. We extracted the melody using [basic_pitch](https://github.com/spotify/basic-pitch-ts) and organized it into a format of melody triplets, with details available in the paper. Each `.wav` file has a corresponding melody text`.txt`, for example, `00040020.wav` corresponds to `00040020.txt`, and all melody texts are placed in a single directory.
+We have created the MelodySet dataset. We extracted the melody using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organized it into a format of melody triplets, with details available in the paper. Each `.wav` file has a corresponding melody text`.txt`, for example, `00040020.wav` corresponds to `00040020.txt`, and all melody texts are placed in a single directory.
 ```bash
 your_path/
 └── melody_text/00040020.txt
