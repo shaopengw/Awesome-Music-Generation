@@ -1,6 +1,9 @@
 # Awesome-Music-Generation  
 ![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
+
+🎉 Latest Update! We've released the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset! Come and try it out~ 🎵
+
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
 <a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MG²&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
@@ -11,6 +14,11 @@
 
 &ensp; &rarr; &ensp; 
 <a href="https://huggingface.co/ManzhenWei/MG2"><img src="https://img.shields.io/static/v1?label=CKPT&message=huggingface&color=yellow&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here!  
+
+&ensp; &rarr; &ensp; 
+<a href="https://huggingface.co/datasets/ManzhenWei/MusicSet"><img src="https://img.shields.io/static/v1?label=Dataset&message=MusicSet&color=green&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here! 
+
+
 This repository contains the implementation of the music generation model **MG<sup>2</sup>**, the first novel approach using melody to guide the music generation that, despite a pretty simple method and extremely limited resources, achieves excellent performance.
 
 Anyone can use this model to generate personalized background music for their short videos on platforms like TikTok, YouTube Shorts, and Meta Reels. Additionally, it is very cost-effective to fine-tune the model with your own private music dataset.
