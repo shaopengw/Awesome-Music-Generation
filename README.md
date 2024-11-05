@@ -106,14 +106,32 @@ When training MG<sup>2</sup>, it is necessary to convert .flac files to .wav for
 Awesome-Music-Generation/
 └── data/
     └── dataset/
-       └── wav/xxx.wav
-               xxx.wav
-               ...
+       └── audioset/
+           └── wav/xxx.wav
+                   xxx.wav
+                   ...
        └── metadata/dataset_root.json
            └── MusicSet/
                └── datafiles/train.json
                              valid.json
                              test.json
+```
+Here is an example content for dataset_root.json:
+```bash
+{
+    "MusicSet": "/mnt/data/wmz/Awesome-Music-Generation/data/dataset/audioset",
+    "comments": {},
+    "metadata": {
+      "path": {
+        "MusicSet": {
+          "train": "./data/dataset/metadata/MusicSet/datafiles/train.json",
+          "test": "./data/dataset/metadata/MusicSet/datafiles/test.json",
+          "val": "./data/dataset/metadata/MusicSet/datafiles/valid.json",
+          "class_label_indices": ""
+        }
+      }
+    }
+  }
 ```
 ### MelodySet
 
