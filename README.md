@@ -153,14 +153,14 @@ Here is an example content for train.json:
 }
 ```
 ### MelodySet
-We have created the MelodySet dataset. We extracted the melody using basic_pitch and organized it into a format of melody triplets, with details available in the paper. Each [.wav] file has a corresponding melody text[.txt], for example, [00040020.wav] corresponds to [00040020.txt], and all melody texts are placed in a single directory.
+We have created the MelodySet dataset. We extracted the melody using basic_pitch and organized it into a format of melody triplets, with details available in the paper. Each `.wav` file has a corresponding melody tex`.txt`, for example, `00040020.wav` corresponds to `00040020.txt`, and all melody texts are placed in a single directory.
 ```bash
 your_path/
 └── melody_txt/00040020.txt
                00009570.txt
 ```
 
-Here is an example content for [.txt]
+Here is an example content for `.txt`
 ```bash
 <G4>,<114>,<79>|<A4>,<119>,<81>|<B2>,<159>,<0>|<G4>,<117>,<62>|<A4>,<91>,<77>|<D3>,<202>,<0>|<B4>,<92>,<72>|<A4>,<95>,<77>|<B4>,<98>,<80>|<G3>,<200>,<0>|<A4>,<151>,<30>|<G4>,<95>,<77>|<A4>,<93>,<82>|<F#3>,<146>,<0>|<A2>,<201>,<0>|<G2>,<116>,<117>|<G3>,<149>,<0>|<B2>,<122>,<75>|<D3>,<110>,<77>|<B4>,<206>,<0>|<B4>,<113>,<111>|<B3>,<90>,<95>|<A3>,<110>,<57>|<E5>,<113>,<41>|<G3>,<177>,<0>|<D#5>,<119>,<73>|<B3>,<119>,<32>|<C4>,<108>,<78>|<E5>,<111>,<49>|<F#5>,<117>,<82>|<E5>,<111>,<78>|<F#5>,<114>,<82>|<G3>,<151>,<0>|<G5>,<95>,<73>|<F#5>,<91>,<81>|<G5>,<92>,<78>|<A3>,<143>,<43>|<E4>,<202>,<0>|<F#5>,<152>,<30>|<E5>,<98>,<86>|<D#4>,<139>,<8>|<B3>,<142>,<0>|<F#5>,<94>,<68>|<B3>,<111>,<120>|<G3>,<114>,<84>|<B3>,<118>,<83>|<E3>,<122>,<81>|<G5>,<231>,<0>|<E4>,<234>,<0>|<F#5>,<118>,<63>|<E5>,<114>,<79>|<G3>,<118>,<37>|<D5>,<122>,<76>|<C#5>,<119>,<78>|<E5>,<119>,<77>|<B3>,<100>,<78>|<B4>,<123>,<57>|<E5>,<112>,<71>|<A3>,<209>,<0>|<G5>,<123>,<105>|<A4>,<154>,<0>|<F#5>,<124>,<73>|<A3>,<136>,<22>|<C#4>,<205>,<0>|<E5>,<125>,<28>|<F#5>,<121>,<74>|<A5>,<115>,<72>|<D3>,<144>,<0>|<E3>,<95>,<81>|<E5>,<122>,<62>|<A5>,<115>,<76>|<F#3>,<106>,<84>|<D5>,<117>,<48>|<C5>,<125>,<74>|<D3>,<102>,<74>|<B4>,<120>,<50>|<A4>,<123>,<76>|<B4>,<116>,<80>|<D5>,<117>,<79>|<D4>,<319>,<0>|<A4>,<113>,<65>|<C4>,<114>,<42>|<D5>,<116>,<78>|<B3>,<108>,<84>|<G4>,<114>,<43>
 ```
