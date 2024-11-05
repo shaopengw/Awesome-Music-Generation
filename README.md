@@ -90,8 +90,7 @@ In the training of CLMP, it is necessary to align and train the three dimensions
 
 ```bash
 # Ensure that the training data packaged in the webdataset format is placed in the following directory
-Awesome-Music-Generation/
-└── dataset/
+dataset/
     └── MusicSet/
         └──train/pretrain0.tar
                  pretrain1.tar
