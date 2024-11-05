@@ -84,6 +84,7 @@ Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
 ## Dataset
 ### MusicSet
+We introduce the new MusicSet dataset, featuring approximately 150,000 high-quality 10-second music-text pairs. The dataset can be accessed at the following URL: https://huggingface.co/datasets/ManzhenWei/MusicSet
 ### MelodySet
 
 ## Todo List
