@@ -88,7 +88,7 @@ Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 - [x] Demo website
 - [x] Huggingface checkpoints
 - [x] Quick start (Inference)
-- [ ] Training Datasets
+- [x] Training Datasets
 - [ ] Training/fine-tuning code
 - [x] Online free generation service
 - [ ] Checkpoints on larger datasets
