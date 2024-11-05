@@ -90,18 +90,21 @@ In the training of CLMP, it is necessary to align and train the three dimensions
 
 ```bash
 # Ensure that the training data packaged in the webdataset format is placed in the following directory
-dataset/
-└── MusicSet/
-    └──train/pretrain0.tar
-             pretrain1.tar
-             pretrain2.tar
-             ...
-    └──valid/
-    └──test/
+clmp/
+└── dataset/
+    └── MusicSet/
+        └──train/pretrain0.tar
+                 pretrain1.tar
+                 pretrain2.tar
+                 ...
+        └──valid/
+        └──test/
 ```
 ### MG<sup>2</sup> training format
 When training MG<sup>2</sup>, it is necessary to convert .flac files to .wav format.
+```bash
 
+```
 ### MelodySet
 
 ## Todo List
