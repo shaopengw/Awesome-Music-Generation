@@ -133,6 +133,25 @@ Here is an example content for dataset_root.json:
     }
   }
 ```
+Here is an example content for train.json:
+```bash
+{
+    "data": [
+        {
+            "wav": "wav/00040020.wav",
+            "seg_label": "",
+            "labels": "",
+            "caption": " The song starts with the high and fuzzy tone of an alarm bell beeping until a button is pressed, which triggers the grungy sound of an electric guitar being played in a rock style.", "The beat then counts to four, enhancing the overall rhythm."
+        },
+        {
+            "wav": "wav/00009570.wav",
+            "seg_label": "",
+            "labels": "",
+            "caption": "This lively song features a male vocalist singing humorous lyrics over a medium-fast tempo of 106.", "0 beats per minute.", "Accompanied by keyboard harmony, acoustic guitar, steady drumming, and simple bass lines, the catchy tune is easy to sing along with.", "Set in the key of B major, the chord sequence includes Abm7, F#/G#, and Emaj7.", "With its spirited and animated feel, this fun track is sure to keep listeners engaged from start to finish."
+        }
+    ]
+}
+```
 ### MelodySet
 
 ## Todo List
