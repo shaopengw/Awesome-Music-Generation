@@ -2,7 +2,7 @@
 ![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
 
-🎉 Latest Update! We've released the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset! Come and try it out~ 🎵
+🎉 Latest Update! We've released the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset! Come and try it out~ 🎵 \[2024-11-05\]
 
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
@@ -92,12 +92,12 @@ Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
 ## Dataset
 ### MusicSet
-We introduce the new [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset, featuring approximately 150,000 high-quality 10-second music-melody-text pairs. The dataset can be accessed at the following URL: https://huggingface.co/datasets/ManzhenWei/MusicSet
-### Dataset structure for CLMP
+We introduce the newly proposed [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset, featuring approximately 150,000 high-quality 10-second music-melody-text pairs. 
+### Dataset structure of CLMP
 We propose CLMP (Contrastive Language-Music Pretraining) to align text description, music waveform and melody before the training of diffusion module. We utilize the [Webdataset](https://github.com/webdataset/webdataset) as a dataloader for music waveform and text description, and we use another dataloader for melody. The MusicSet has been orginized as following for the traning of CLMP:  
 
 ```bash
-# Ensure that the training data packaged in the webdataset format is placed in the following directory
+# Ensure that the training data packaged with Webdataset format is orginized as following:
 clmp/
 └── dataset/
     └── MusicSet/
@@ -108,8 +108,9 @@ clmp/
         └──valid/
         └──test/
 ```
-### Dataset structure for diffusion module
+### Dataset structure of diffusion module
 The dataset structure of diffusion module is as following:
+
 (Noted that you must convert `.flac` files to `.wav` format.)
 ```bash
 Awesome-Music-Generation/
@@ -125,7 +126,7 @@ Awesome-Music-Generation/
                              valid.json
                              test.json
 ```
-An example of dataset_root.json:
+Below is an example of dataset_root.json:
 ```bash
 {
     "MusicSet": "/mnt/data/wmz/Awesome-Music-Generation/data/dataset/audioset",
@@ -142,7 +143,7 @@ An example of dataset_root.json:
     }
   }
 ```
-An example of train.json:
+Below is an example of train.json:
 ```bash
 {
     "data": [
@@ -162,18 +163,20 @@ An example of train.json:
 }
 ```
 ### MelodySet
-We release the MelodySet, containing processed melody for MusicCaps and Musicbench. We extracted the melody using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organized it into melody triplets, with details available in the paper. Each `.wav` file has a corresponding melody text`.txt`, for example, `00040020.wav` corresponds to `00040020.txt`, and all melody texts are placed in a single directory.
+We will release the MelodySet, containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets. Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
+
+The orginization of music waveform and text description are same as that in MusicSet. Thus we only show the dataset structure of melody part as following:
 ```bash
 your_path/
 └── melody_text/00040020.txt
                00009570.txt
 ```
 
-Here is an example content for `.txt`
+Below is an example of melody, which consists of melody triplets:
 ```bash
 <G4>,<114>,<79>|<A4>,<119>,<81>|<B2>,<159>,<0>|<G4>,<117>,<62>|<A4>,<91>,<77>|<D3>,<202>,<0>|<B4>,<92>,<72>|<A4>,<95>,<77>|<B4>,<98>,<80>|<G3>,<200>,<0>|<A4>,<151>,<30>|<G4>,<95>,<77>|<A4>,<93>,<82>|<F#3>,<146>,<0>|<A2>,<201>,<0>|<G2>,<116>,<117>|<G3>,<149>,<0>|<B2>,<122>,<75>|<D3>,<110>,<77>|<B4>,<206>,<0>|<B4>,<113>,<111>|<B3>,<90>,<95>|<A3>,<110>,<57>|<E5>,<113>,<41>|<G3>,<177>,<0>|<D#5>,<119>,<73>|<B3>,<119>,<32>|<C4>,<108>,<78>|<E5>,<111>,<49>|<F#5>,<117>,<82>|<E5>,<111>,<78>|<F#5>,<114>,<82>|<G3>,<151>,<0>|<G5>,<95>,<73>|<F#5>,<91>,<81>|<G5>,<92>,<78>|<A3>,<143>,<43>|<E4>,<202>,<0>|<F#5>,<152>,<30>|<E5>,<98>,<86>|<D#4>,<139>,<8>|<B3>,<142>,<0>|<F#5>,<94>,<68>|<B3>,<111>,<120>|<G3>,<114>,<84>|<B3>,<118>,<83>|<E3>,<122>,<81>|<G5>,<231>,<0>|<E4>,<234>,<0>|<F#5>,<118>,<63>|<E5>,<114>,<79>|<G3>,<118>,<37>|<D5>,<122>,<76>|<C#5>,<119>,<78>|<E5>,<119>,<77>|<B3>,<100>,<78>|<B4>,<123>,<57>|<E5>,<112>,<71>|<A3>,<209>,<0>|<G5>,<123>,<105>|<A4>,<154>,<0>|<F#5>,<124>,<73>|<A3>,<136>,<22>|<C#4>,<205>,<0>|<E5>,<125>,<28>|<F#5>,<121>,<74>|<A5>,<115>,<72>|<D3>,<144>,<0>|<E3>,<95>,<81>|<E5>,<122>,<62>|<A5>,<115>,<76>|<F#3>,<106>,<84>|<D5>,<117>,<48>|<C5>,<125>,<74>|<D3>,<102>,<74>|<B4>,<120>,<50>|<A4>,<123>,<76>|<B4>,<116>,<80>|<D5>,<117>,<79>|<D4>,<319>,<0>|<A4>,<113>,<65>|<C4>,<114>,<42>|<D5>,<116>,<78>|<B3>,<108>,<84>|<G4>,<114>,<43>
 ```
-The complete MelodySet will coming soon.
+The complete MelodySet is coming soon.
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
@@ -181,7 +184,7 @@ The complete MelodySet will coming soon.
 - [x] Training Datasets
 - [ ] Training/fine-tuning code
 - [x] Online free generation service
-- [ ] Checkpoints on larger datasets
+
 
 ---
 ### Feel free to explore the repository and contribute!
