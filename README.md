@@ -2,9 +2,10 @@
 ![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
 
+🎉 We've released the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet) dataset.\[2024-11-08\]
+
 🎉 Latest Update! We've released the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset! Come and try it out~ 🎵 \[2024-11-05\]
 
-🎉 We've released the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet) dataset.\[2024-11-08\]
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
 <a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MG²&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
