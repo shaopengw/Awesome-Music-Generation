@@ -167,8 +167,8 @@ Below is an example of train.json:
     ]
 }
 ```
-### [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet)
-We will release the MelodySet, containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets. Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
+### MelodySet
+We will release the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet), containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets. Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
 
 The orginization of music waveform and text description are same as that in MusicSet. Thus we only show the dataset structure of melody part as following:
 ```bash
