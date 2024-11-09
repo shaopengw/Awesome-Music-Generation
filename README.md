@@ -2,6 +2,8 @@
 ![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
 
+🎉 We've released the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet) dataset.\[2024-11-08\]
+
 🎉 Latest Update! We've released the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset! Come and try it out~ 🎵 \[2024-11-05\]
 
 ### Try our demo first! 
@@ -17,6 +19,9 @@
 
 &ensp; &rarr; &ensp; 
 <a href="https://huggingface.co/datasets/ManzhenWei/MusicSet"><img src="https://img.shields.io/static/v1?label=Dataset&message=MusicSet&color=green&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here! 
+
+&ensp; &rarr; &ensp; 
+<a href="https://huggingface.co/datasets/ManzhenWei/MelodySet"><img src="https://img.shields.io/static/v1?label=Dataset&message=MelodySet&color=green&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here! 
 
 
 This repository contains the implementation of the music generation model **MG<sup>2</sup>**, the first novel approach using melody to guide the music generation that, despite a pretty simple method and extremely limited resources, achieves excellent performance.
@@ -163,7 +168,7 @@ Below is an example of train.json:
 }
 ```
 ### MelodySet
-We will release the MelodySet, containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets. Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
+We will release the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet), containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets. Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
 
 The orginization of music waveform and text description are same as that in MusicSet. Thus we only show the dataset structure of melody part as following:
 ```bash
