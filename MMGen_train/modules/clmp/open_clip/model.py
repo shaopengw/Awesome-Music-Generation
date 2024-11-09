@@ -406,7 +406,7 @@ class CLAPAudioCfp:
     fmax: int = 14000
     class_num: int = 527
     mel_bins: int = 64
-    clip_samples: int = 480000
+    clip_samples: int = 48000
 
 
 @dataclass
@@ -531,7 +531,7 @@ class CLAP(nn.Module):
                 nn.Linear(self.joint_embed_shape, self.joint_embed_shape),
             )
         elif text_cfg.model_type == "roberta":
-            self.text_branch = RobertaModel.from_pretrained("/mnt/data/wmz/audioldm_train_faiss/audio-ldm-training-finetuning-main_all_run/data/checkpoints/Roberta")
+            self.text_branch = RobertaModel.from_pretrained("roberta-base")
             self.text_transform = MLPLayers(
                 units=[
                     self.joint_embed_shape,
@@ -721,27 +721,29 @@ class CLAP(nn.Module):
         #     return self.audio_projection(
         #         self.encode_audio(audio, device=device)["embedding"]
         #     )
-    
         audio_features = self.audio_projection(
             self.encode_audio(audio, device=device)["embedding"]
         )
         audio_features = F.normalize(audio_features, dim=-1)
 
-        text_features = self.encode_text(text, device=device)
-        text_features = F.normalize(text_features, dim=-1)
+        # Check if text data exists and process it
+        if text is not None:
+            text_features = self.encode_text(text, device=device)
+            text_features = F.normalize(text_features, dim=-1)
+            text_features_mlp = self.text_transform(text_features)
+        else:
+            text_features = None
+            text_features_mlp = None
 
         audio_features_mlp = self.audio_transform(audio_features)
-        text_features_mlp = self.text_transform(text_features)
-
         
+        # Check if melody data exists and process it
         if 'melody_text' in audio:
             melody_features = self.encode_melody(audio["melody_text"], device=device) # [2 ,1024]
             melody_features = self.melody_mlp_1024_to_768(melody_features)
             melody_features = self.melody_projection(melody_features)
             melody_features = F.normalize(melody_features, dim=-1)
             
-            # final_memory = torch.cuda.memory_allocated()
-            # print(f"melody——features memory allocated: {final_memory / 1024**2:.2f} MB")
             return (
             melody_features,
             audio_features,

@@ -439,13 +439,17 @@ def main():
                     "module"
                 ):
                     sd = {k[len("module.") :]: v for k, v in sd.items()}
-                model.load_state_dict(sd)
+                # WangHaoyu 8.25: Try to resume
+                model.load_state_dict(sd, strict=False)
                 if args.split_opt:
                     if optimizer is not None:
                         for k, o_ in optimizer.items():
                             o_.load_state_dict(checkpoint[k + "_" + "optimizer"])
                 if optimizer is not None:
-                    optimizer.load_state_dict(checkpoint["optimizer"])
+                    try:
+                        optimizer.load_state_dict(checkpoint["optimizer"])
+                    except:
+                        print("optimizer load failed")
                 if scaler is not None and "scaler" in checkpoint:
                     scaler.load_state_dict(checkpoint["scaler"])
                 logging.info(
@@ -493,14 +497,13 @@ def main():
         wandb.save(params_file)
         logging.debug("Finished loading wandb.")
 
-    
-    # if "train" not in data:
-    #     evaluate(model, data, start_epoch, args, writer)
-    #     return
-    # elif start_epoch == 0 and "val" in data and not args.no_eval:
-    #     evaluate(model, data, 0, args, writer)
-    #     #  print(f'rank {args.rank}, Start First Evaluation')#  (yusong): for debug
-    
+    # WangHaoyu: Try to collect feature
+    if "train" in data and args.collect_audio_melody_feature:
+        print("collect feature")
+        evaluate(model, {"val": data["train"]}, start_epoch, args, writer)
+
+    else:
+        print("not collect feature")
     
     
     if args.save_top_performance:

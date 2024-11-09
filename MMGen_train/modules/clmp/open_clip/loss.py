@@ -4,6 +4,7 @@ import torch.distributed.nn
 from torch import distributed as dist, nn as nn
 from torch.nn import functional as F
 import numpy as np
+import logging
 from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score
 
 try:
@@ -287,15 +288,15 @@ class ClipLoss(nn.Module):
                 logits_per_text_melody = None
                 logits_per_melody_text = None
 
-                
+                # Check if text_features and audio_features are not empty
                 if text_features is not None and audio_features is not None:
                     logits_per_audio_text = logit_scale_a * audio_features @ text_features.T
                     logits_per_text_audio = logit_scale_a * text_features @ audio_features.T
-                
+                # Check if melody_features and audio_features are not empty
                 if melody_features is not None and audio_features is not None:
                     logits_per_audio_melody = logit_scale_a * audio_features @ melody_features.T
                     logits_per_melody_audio = logit_scale_a * melody_features @ audio_features.T
-                
+                # Check if melody_features and text_features are not empty
                 if melody_features is not None and text_features is not None:
                     logits_per_text_melody = logit_scale_a * text_features @ melody_features.T
                     logits_per_melody_text = logit_scale_a * melody_features @ text_features.T
@@ -305,7 +306,7 @@ class ClipLoss(nn.Module):
 
             # calculated ground-truth and cache if enabled
             if logits_per_audio_melody is not None:               
-                num_logits = logits_per_audio_melody.shape[0] 
+                num_logits = logits_per_audio_melody.shape[0] # Number of samples in the current batch
             elif logits_per_audio_text is not None:
                 num_logits = logits_per_audio_text.shape[0]
             elif logits_per_text_melody is not None:
@@ -323,30 +324,37 @@ class ClipLoss(nn.Module):
             else:
                 labels = self.labels[device]
             if not self.weighted_loss:
-                
+                # Calculate loss
                 loss_components = []
                 if logits_per_audio_text is not None:
                     loss_components.append(F.cross_entropy(logits_per_audio_text, labels))
-                    
+                    # print("WangHaoyu: Successfully calculate the similarity score between audio and text:", F.cross_entropy(logits_per_audio_text, labels))
                     loss_components.append(F.cross_entropy(logits_per_text_audio, labels))
-                    
+                    # print("WangHaoyu: Successfully calculate the similarity score between text and audio:", F.cross_entropy(logits_per_text_audio, labels))
 
                 if logits_per_melody_audio is not None:
                     loss_components.append(F.cross_entropy(logits_per_melody_audio, labels))
-                    
+                    # print("WangHaoyu: Successfully calculate the similarity score between audio and melody:", F.cross_entropy(logits_per_melody_audio, labels))
                     loss_components.append(F.cross_entropy(logits_per_audio_melody, labels))
-                    
+                    # print("WangHaoyu: Successfully calculate the similarity score between melody and audio:", F.cross_entropy(logits_per_audio_melody, labels))
 
                 if logits_per_text_melody is not None:
                     loss_components.append(F.cross_entropy(logits_per_text_melody, labels))
-                    
+                    # print("WangHaoyu: Successfully calculate the similarity score between text and melody:", F.cross_entropy(logits_per_text_melody, labels))
                     loss_components.append(F.cross_entropy(logits_per_melody_text, labels))
-                    
+                    # print("WangHaoyu: Successfully calculate the similarity score between melody and text:", F.cross_entropy(logits_per_melody_text, labels))
                 if loss_components:
                     total_loss = sum(loss_components)/ len(loss_components)
-                    
-                    
-                    
+                
+                
+                # logging.info(
+                #     f"a2t loss: {F.cross_entropy(logits_per_audio_text, labels):#.5g} "
+                #     f"t2a loss: {F.cross_entropy(logits_per_text_audio, labels):#.5g} "
+                #     f"m2a loss: {F.cross_entropy(logits_per_melody_audio, labels):#.5g} "
+                #     f"a2m loss: {F.cross_entropy(logits_per_audio_melody, labels):#.5g} "
+                #     f"t2m loss: {F.cross_entropy(logits_per_text_melody, labels):#.5g} "
+                #     f"m2t loss: {F.cross_entropy(logits_per_melody_text, labels):#.5g}"
+                # )
                     
             else:
                 audio_weight = (all_audio_features @ all_audio_features.T).detach()

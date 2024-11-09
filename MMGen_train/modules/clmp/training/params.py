@@ -551,19 +551,26 @@ def parse_args():
         default=None,
         help="For selecting levels of augmented text. Type is among ['all', 'augment_only', 'none']",
     )
-    # (WangHaoyu) Add more arguments for clap training
+    # (WangHaoyu): path to melody file
     parser.add_argument(
         "--melody-path",
         type=str,
         default = None,
-        help="Path to the melody file",
+        help="path to the melody text file", 
     )
-    # (WangHaoyu):just melody and audio align
+    # (WangHaoyu): if True, just align melody and audio
     parser.add_argument(
         "--drop-text",
         type=bool,
         default=False,
-        help="Just Align melody and audio",
+        help="if True, just align melody and audio",
+    )
+    # (Wang Haoyu): if True, collect audio and melody and text feature
+    parser.add_argument(
+        "--collect-audio-melody-feature",
+        type=bool,
+        default=False,
+        help="if True, collect audio and melody feature",
     )
 
     args = parser.parse_args()

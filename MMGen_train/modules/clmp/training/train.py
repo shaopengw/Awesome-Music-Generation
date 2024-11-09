@@ -79,6 +79,17 @@ def train_one_epoch(
     data_time_m = AverageMeter()
     end = time.time()
 
+    # TODO: Remove this section completely in future updates
+    if args.collect_audio_melody_feature:
+        all_melody_features = []
+        all_audio_features = []
+        all_audio_filenames = []
+        save_path = '/mnt/data/why/clap/audiocaps'
+        # Check if directory exists, create if not
+        if not os.path.exists(save_path):
+            os.makedirs(save_path)  
+
+    # Code in training loop
     for i, batch in enumerate(dataloader):
         # logging.info(f"batch {i} of {num_batches_per_epoch}")
         step = num_batches_per_epoch * epoch + i
@@ -89,14 +100,18 @@ def train_one_epoch(
             scheduler(step)
         audios = batch  # contains mel_spec, wavform, and longer list
 
+        # Wang Haoyu: If args.drop_text is True, text data will not be used
         if args.drop_text:
             texts = None
         else:
             texts = batch["text"]
         audio_filenames = batch["audio_name"]
 
-        
+        # Wang Haoyu: Save filenames to list
+        if args.collect_audio_melody_feature:
+            all_audio_filenames.extend(audio_filenames)
 
+        
         data_time_m.update(time.time() - end)
         if isinstance(optimizer, dict):
             for o_ in optimizer.values():
@@ -113,6 +128,13 @@ def train_one_epoch(
                 logit_scale_a,
                 logit_scale_t,
             ) = model(audios, texts, device)
+
+            # TODO: Remove this section completely in future updates
+            if args.collect_audio_melody_feature:
+                if melody_features is not None:
+                    all_melody_features.append(melody_features.cpu().detach().numpy())
+                if audio_features is not None:
+                    all_audio_features.append(audio_features.cpu().detach().numpy())
 
             if args.clap_mlploss:
                 total_loss = loss(
@@ -163,8 +185,6 @@ def train_one_epoch(
                 total_loss.backward()
                 optimizer.step()
         
-
-        # Note: we clamp to 4.6052 = ln(100), as in the original paper.
         with torch.no_grad():
             unwrap_model(model).logit_scale_a.clamp_(0, math.log(100))
             if args.clap_mlploss:
@@ -272,6 +292,8 @@ def train_one_epoch(
             # resetting batch / data time meters per log window
             batch_time_m.reset()
             data_time_m.reset()
+
+
     
 def evaluate(model, data, epoch, args, tb_writer=None):
     metrics = {}
@@ -285,6 +307,21 @@ def evaluate(model, data, epoch, args, tb_writer=None):
         all_melody_features = []
         all_text_features = []
         all_audio_filenames = []
+        batch_count = 0
+        file_count = 0
+        total_samples = 0
+        save_path = 'faiss_indexing/clmp_embeddings'
+        if not os.path.exists(save_path):
+            os.makedirs(save_path)
+        print(f"Save path: {os.path.abspath(save_path)}")
+        
+        if isinstance(args.datasetnames, list):
+            dataset_name = '_'.join(args.datasetnames)
+        else:
+            dataset_name = str(args.datasetnames)
+        
+        # To be safe, remove any characters that could cause file name issues
+        dataset_name = ''.join(c for c in dataset_name if c.isalnum() or c in ('_', '-'))
         
     # CHANGE
     # zero_shot_metrics = zero_shot_eval(model, data, epoch, args)
@@ -292,12 +329,10 @@ def evaluate(model, data, epoch, args, tb_writer=None):
     if is_master(args):
         print("Evaluating...")
     autocast = torch.cuda.amp.autocast if args.precision == "amp" else suppress
-    # why print val_dataset_names
-    # print("**************val_dataset_names********************", args.val_dataset_names)
+
     if args.val_dataset_names == ["Clotho", "audiocaps", "MusicBench", "MAESTRO2004","MusicCaps", "MTGALL"]:
-        # if only clotho and audiocaps are used, then we will use a different evaluation function.
-        # This is because in the Clotho and audiocaps valid and test set, there are 5 text for 1 audio.
         if args.parallel_eval:
+            # (yusong): just a hack here. Don't ucose parallel eval when evaluating only clotho and audiocaps.
             raise NotImplementedError(
                 "Parallel evaluation not supported for eval only Clotho and audiocaps."
             )
@@ -340,7 +375,7 @@ def evaluate(model, data, epoch, args, tb_writer=None):
             
             # WangHaoyuuu
             if args.melody_path:
-                eval_info["all"]["all_melody_features"] = []  
+                eval_info["all"]["all_melody_features"] = []  # Add storage for melody_features
 
             if not args.drop_text:
                 eval_info["all"]["all_text_features"] = []
@@ -357,6 +392,8 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                     audios = batch  # contains mel_spec, waveform, and longer list
                     texts = batch["text"]
                     melody_features = batch["melody_text"] if args.melody_path else None
+                
+                # sys.exit()
 
                 all_names = list(
                     set(["-".join(b.split("/")[-3:-1]) for b in batch["__url__"]])
@@ -404,6 +441,33 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                         if text_features is not None:
                             all_text_features.append(text_features.cpu().numpy())
                         all_audio_filenames.extend(batch["audio_name"])
+                        
+                        batch_count += 1
+                        total_samples += len(batch["audio_name"])
+                        
+                        if batch_count == 100:
+                            file_count += 1
+                            # Save features
+                            np.save(os.path.join(save_path, f'{dataset_name}_audio_{epoch}_{file_count}.npy'), np.concatenate(all_audio_features, axis=0))
+                            if all_melody_features:
+                                np.save(os.path.join(save_path, f'{dataset_name}_melody_{epoch}_{file_count}.npy'), np.concatenate(all_melody_features, axis=0))
+                            if all_text_features:
+                                np.save(os.path.join(save_path, f'{dataset_name}_text_{epoch}_{file_count}.npy'), np.concatenate(all_text_features, axis=0))
+                            
+                            # Save file name mapping
+                            start_idx = total_samples - len(all_audio_filenames)
+                            index_mapping = {i + start_idx: name for i, name in enumerate(all_audio_filenames)}
+                            with open(os.path.join(save_path, f'{dataset_name}_index_map_{epoch}_{file_count}.json'), 'w') as f:
+                                json.dump(index_mapping, f, indent=4)
+                            
+                            print(f"Epoch {epoch}, Batch {i+1}: Saved features for samples {start_idx+1} to {total_samples}")
+                            
+                            # Reset lists
+                            all_audio_features = []
+                            all_melody_features = []
+                            all_text_features = []
+                            all_audio_filenames = []
+                            batch_count = 0
                     
                     if args.parallel_eval:
                         # multi-GPU eval
@@ -444,10 +508,10 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                                 eval_info[n]["all_audio_features"].append(
                                     audio_features.cpu()
                                 )
-                                if text_features is not None:  
+                                if text_features is not None:  # Ensure text features exist before adding
                                     eval_info[n]["all_text_features"].append(text_features.cpu())
                                 # WangHaoyuuu
-                                if melody_features is not None:
+                                if melody_features is not None:# Ensure melody_features variable
                                     eval_info[n]["all_melody_features"].append(
                                         melody_features.cpu()  )
                                     
@@ -475,11 +539,11 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                                 )
 
                                 # WangHaoyuuu
-                                if text_features is not None: 
+                                if text_features is not None: # Ensure text features list exists and is not empty before concatenation
                                     eval_info[n]["all_text_features"].append(
                                     text_features.cpu().index_select(0, torch.tensor(idx).long()))
                                 
-                                if melody_features is not None: 
+                                if melody_features is not None: # Ensure melody_features variable
                                     eval_info[n]["all_melody_features"].append(
                                         melody_features.cpu().index_select(
                                             0, torch.tensor(idx).long()))
@@ -495,10 +559,35 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                                             0, torch.tensor(idx).long()
                                         )
                                     )
-                if is_master(args) and (i % 100) == 0:  # and i != 0:
+
+                # cumulative_loss += total_loss * batch_size
+                # num_samples += batch_size
+                if is_master(args) and (i % 100) == 0:
                     logging.info(
                         f"Eval Epoch: {epoch} [{num_samples} / {samples_per_val}]"
                     )
+            
+            # Save any remaining data after the loop
+            if args.collect_audio_melody_feature and all_audio_features:
+                file_count += 1
+                np.save(os.path.join(save_path, f'{dataset_name}_audio_{epoch}_{file_count}.npy'), np.concatenate(all_audio_features, axis=0))
+                if all_melody_features:
+                    np.save(os.path.join(save_path, f'{dataset_name}_melody_{epoch}_{file_count}.npy'), np.concatenate(all_melody_features, axis=0))
+                if all_text_features:
+                    np.save(os.path.join(save_path, f'{dataset_name}_text_{epoch}_{file_count}.npy'), np.concatenate(all_text_features, axis=0))
+                
+                start_idx = total_samples - len(all_audio_filenames)
+                index_mapping = {i + start_idx: name for i, name in enumerate(all_audio_filenames)}
+                with open(os.path.join(save_path, f'{dataset_name}_index_map_{epoch}_{file_count}.json'), 'w') as f:
+                    json.dump(index_mapping, f, indent=4)
+                
+                print(f"Epoch {epoch}: Saved remaining features for samples {start_idx+1} to {total_samples}")
+
+            if args.collect_audio_melody_feature:
+                print(f"Epoch {epoch}: Feature collection and saving completed! Total samples: {total_samples}")
+
+                sys.exit()  
+            
             if is_master(args):
                 val_metrics_per_dataset = {}
                 for n in eval_info.keys():
@@ -526,26 +615,6 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                     metrics.update(val_metrics_per_dataset[n])
                     if "epoch" not in metrics.keys():
                         metrics.update({"epoch": epoch})
-                
-                if args.collect_audio_melody_feature:
-                    save_path = ''
-                    if not os.path.exists(save_path):
-                        os.makedirs(save_path)
-                    dataset_name = args.datasetnames
-                    np.save(os.path.join(save_path, f'{dataset_name}_audio_{epoch}.npy'), np.concatenate(all_audio_features, axis=0))
-                    if all_melody_features:
-                        np.save(os.path.join(save_path, f'{dataset_name}_melody_{epoch}.npy'), np.concatenate(all_melody_features, axis=0))
-                    if all_text_features:
-                        np.save(os.path.join(save_path, f'{dataset_name}_text_{epoch}.npy'), np.concatenate(all_text_features, axis=0))
-                    
-                    index_mapping = {i: name for i, name in enumerate(all_audio_filenames)}
-                    with open(os.path.join(save_path, f'{dataset_name}_index_map_{epoch}.json'), 'w') as f:
-                        json.dump(index_mapping, f, indent=4)
-
-                    print(f"Epoch {epoch}: save successfully!")
-                    sys.exit()
-
-                
     if is_master(args):
         if not metrics:
             return metrics
@@ -586,7 +655,7 @@ def get_metrics(
     audio_features_mlp=None,
     text_features_mlp=None,
     logit_scale_t=None,
-    melody_features=None, 
+    melody_features=None,  # WangHaoyuuu: Add melody_features parameter
     mlp_loss=False,
 ):
     metrics = {}
@@ -620,7 +689,8 @@ def get_metrics(
         ground_truth = torch.arange(len(text_features)).view(-1, 1)
 
     else:
-
+        # WangHaoyuuu: Calculate logits between audio and text
+        # When both audio_features and text_features exist, calculate logits between audio and text
         logits_per_audio_text = None
         logits_per_text_audio = None
         logits_per_audio_melody = None
@@ -633,30 +703,30 @@ def get_metrics(
                 (logit_scale_a * audio_features @ text_features.t()).detach().cpu()
             )
             logits_per_text_audio = logits_per_audio_text.t().detach().cpu()
-
+            # Print success flag
             print("Computing audio and text logits True")
         
-
+        # When both audio_features and melody_features exist, calculate logits between audio and melody
         if audio_features is not None and melody_features is not None:
             logits_per_audio_melody = (
                 (logit_scale_a * audio_features @ melody_features.t()).detach().cpu()
             )
             logits_per_melody_audio = logits_per_audio_melody.t().detach().cpu()
-
+            # Print success flag
             print("Computing audio and melody logits True")
         
-        
+        # When both text_features and melody_features exist, calculate logits between text and melody
         if text_features is not None and melody_features is not None:
             logits_per_text_melody = (
                 (logit_scale_a * text_features @ melody_features.t()).detach().cpu()
             )
             logits_per_melody_text = logits_per_text_melody.t().detach().cpu()
-
+            # Print success flag
             print("Computing text and melody logits True")
 
 
         labels = torch.arange(audio_features.shape[0]).long()
-
+         # Calculate loss
         loss_components = []
         if logits_per_audio_text is not None:
             loss_components.append(F.cross_entropy(logits_per_audio_text, labels))
@@ -676,7 +746,7 @@ def get_metrics(
         metrics[f"cumulative_loss"] = total_loss.item()
         metrics[f"num_samples"] = audio_features.shape[0]
 
-
+         # Store logits
         logits = {}
         if logits_per_audio_text is not None:
             logits["audio_to_text"] = logits_per_audio_text
@@ -688,7 +758,7 @@ def get_metrics(
             logits["text_to_melody"] = logits_per_text_melody
             logits["melody_to_text"] = logits_per_melody_text
 
-
+         # Calculate ground_truth
         if text_features is not None:
             ground_truth = torch.arange(len(text_features)).view(-1, 1)
         elif audio_features is not None:
@@ -698,7 +768,7 @@ def get_metrics(
 
     for name, logit in logits.items():
         ranking = torch.argsort(logit, descending=True)
-        preds = torch.where(ranking == ground_truth)[1]  
+        preds = torch.where(ranking == ground_truth)[1]  # (yusong) this line is slow because it uses single thread
         preds = preds.detach().cpu().numpy()
         metrics[f"{name}_mean_rank"] = preds.mean() + 1
         metrics[f"{name}_median_rank"] = np.floor(np.median(preds)) + 1
@@ -725,6 +795,7 @@ def evaluate_clotho_audiocaps(
         (3.3) E.g.: the ground truth of first rank of the 5 text should be 1, the second rank should be 2, etc.
     """
     print("**************evaluate_audiocaps********************")
+    # TODO: (yusong) only support single GPU evaluation and only support non-mlp case for now.
     dataloader = data["val"].dataloader
     with torch.no_grad():
         eval_info = {}
@@ -779,6 +850,10 @@ def evaluate_clotho_audiocaps(
                     eval_info[n]["all_audio_features"].append(
                         audio_features.cpu().index_select(0, torch.tensor(idx).long())
                     )
+                    # (yusong) please double-check. This is for selecting 5 text features at once.
+                    # because idx is a list of indices in size of num_samples,
+                    # and text_features is a tensor of size (5*num_samples, dim)
+                    # so we need to select 5 consecutive indices at once for a single index in idx.
                     eval_info[n]["all_text_features"].append(
                         text_features.cpu()
                         .reshape([-1, 5, text_features.shape[1]])
@@ -811,6 +886,11 @@ def evaluate_clotho_audiocaps(
             metrics = {}
             num_samples = audio_features.shape[0]
             metrics[f"num_samples"] = num_samples
+
+            # (yusong) the following code is very important, please double-check:
+            # logits_per_audio.reshape(num_samples, num_samples, 5)[:, :, d]
+            # logits_per_text.reshape(num_samples, 5, num_samples)[:, d, :]
+            # Those two are retrieving one of the 5 text for each audio.
             labels = torch.arange(audio_features.shape[0]).long()
             audio_to_text_loss = [
                 F.cross_entropy(
