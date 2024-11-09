@@ -245,7 +245,7 @@ After CLMP model training or fine-tuning, you'll need to generate embeddings and
 
 ### Latent Diffusion
 This section explains the training and fine-tuning process for the MG² diffusion model.
-
+coming soon...
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
