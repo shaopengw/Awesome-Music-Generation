@@ -177,6 +177,70 @@ Below is an example of melody, which consists of melody triplets:
 <G4>,<114>,<79>|<A4>,<119>,<81>|<B2>,<159>,<0>|<G4>,<117>,<62>|<A4>,<91>,<77>|<D3>,<202>,<0>|<B4>,<92>,<72>|<A4>,<95>,<77>|<B4>,<98>,<80>|<G3>,<200>,<0>|<A4>,<151>,<30>|<G4>,<95>,<77>|<A4>,<93>,<82>|<F#3>,<146>,<0>|<A2>,<201>,<0>|<G2>,<116>,<117>|<G3>,<149>,<0>|<B2>,<122>,<75>|<D3>,<110>,<77>|<B4>,<206>,<0>|<B4>,<113>,<111>|<B3>,<90>,<95>|<A3>,<110>,<57>|<E5>,<113>,<41>|<G3>,<177>,<0>|<D#5>,<119>,<73>|<B3>,<119>,<32>|<C4>,<108>,<78>|<E5>,<111>,<49>|<F#5>,<117>,<82>|<E5>,<111>,<78>|<F#5>,<114>,<82>|<G3>,<151>,<0>|<G5>,<95>,<73>|<F#5>,<91>,<81>|<G5>,<92>,<78>|<A3>,<143>,<43>|<E4>,<202>,<0>|<F#5>,<152>,<30>|<E5>,<98>,<86>|<D#4>,<139>,<8>|<B3>,<142>,<0>|<F#5>,<94>,<68>|<B3>,<111>,<120>|<G3>,<114>,<84>|<B3>,<118>,<83>|<E3>,<122>,<81>|<G5>,<231>,<0>|<E4>,<234>,<0>|<F#5>,<118>,<63>|<E5>,<114>,<79>|<G3>,<118>,<37>|<D5>,<122>,<76>|<C#5>,<119>,<78>|<E5>,<119>,<77>|<B3>,<100>,<78>|<B4>,<123>,<57>|<E5>,<112>,<71>|<A3>,<209>,<0>|<G5>,<123>,<105>|<A4>,<154>,<0>|<F#5>,<124>,<73>|<A3>,<136>,<22>|<C#4>,<205>,<0>|<E5>,<125>,<28>|<F#5>,<121>,<74>|<A5>,<115>,<72>|<D3>,<144>,<0>|<E3>,<95>,<81>|<E5>,<122>,<62>|<A5>,<115>,<76>|<F#3>,<106>,<84>|<D5>,<117>,<48>|<C5>,<125>,<74>|<D3>,<102>,<74>|<B4>,<120>,<50>|<A4>,<123>,<76>|<B4>,<116>,<80>|<D5>,<117>,<79>|<D4>,<319>,<0>|<A4>,<113>,<65>|<C4>,<114>,<42>|<D5>,<116>,<78>|<B3>,<108>,<84>|<G4>,<114>,<43>
 ```
 The complete MelodySet is coming soon.
+
+## Training and Fine-tuning
+
+Assuming you've gone through the Quick Start guide, let's dive into the training and fine-tuning process! 🚀
+
+
+```bash
+conda activate MMGen_quickstart
+```
+
+### CLMP
+This section covers the training and fine-tuning process for the CLMP.
+
+```bash
+cd your_path/MMGen_train/modules/clmp
+```
+
+#### Training
+Before running the training script, **review and update** (**crucial**) the paths in *Awesome-Music-Generation/MMGen_train/modules/clmp/**training.sh*** as needed.  This file contains necessary training details.
+
+```bash
+bash training.sh
+```
+#### Fine-tuning
+Similarly, **review and update** (**crucial**) the paths in *Awesome-Music-Generation/MMGen_train/modules/clmp/**fine_tuning.sh*** before proceeding with fine-tuning.
+```bash
+bash fine_tuning.sh
+```
+
+### CLMP Embedding Extraction and FAISS Index Construction
+After CLMP model training or fine-tuning, you'll need to generate embeddings and construct FAISS indices to enable efficient similarity search during the Latent Diffusion training phase. Follow this two-step process:
+
+1. **Generate CLMP Embeddings**
+   Enable embedding extraction by adding the following flag to your training configuration:
+   ```bash
+   --collect-audio-melody-feature True
+   ```
+   Execute the training or fine-tuning script with this flag:
+   ```bash
+   bash training.sh  # or fine_tuning.sh
+   ```
+   The model will generate audio and melody feature embeddings in the following directory:
+   ```bash
+   your_path/Awesome-Music-Generation/MMGen_train/modules/clmp/faiss_indexing/clmp_embeddings
+   ```
+
+2. **Construct FAISS Indices**
+   Navigate to the indexing directory and execute the index construction script:
+   ```bash
+   cd your_path/Awesome-Music-Generation/MMGen_train/modules/clmp/faiss_indexing
+   ```
+   ```bash
+   # you should modify the path of embeddings in this script
+   python build_faiss_indices.py 
+   ```
+   
+   The script will generate optimized FAISS indices in:
+   ```bash
+   your_path/Awesome-Music-Generation/MMGen_train/modules/clmp/faiss_indexing/faiss_indices
+   ```
+
+### Latent Diffusion
+This section explains the training and fine-tuning process for the MG² diffusion model.
+
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
