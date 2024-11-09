@@ -200,13 +200,13 @@ cd your_path/MMGen_train/modules/clmp
 ```
 
 #### Training
-Before running the training script, **review and update** (**crucial**) the paths in *Awesome-Music-Generation/MMGen_train/modules/clmp/**training.sh*** as needed.  This file contains necessary training details.
+Before running the training script, **review and update** (**crucial**) the paths in [*Awesome-Music-Generation/MMGen_train/modules/clmp/**training.sh***](MMGen_train/modules/clmp/training.sh) as needed. This file contains necessary training details.
 
 ```bash
 bash training.sh
 ```
 #### Fine-tuning
-Similarly, **review and update** (**crucial**) the paths in *Awesome-Music-Generation/MMGen_train/modules/clmp/**fine_tuning.sh*** before proceeding with fine-tuning.
+Similarly, **review and update** (**crucial**) the paths in [*Awesome-Music-Generation/MMGen_train/modules/clmp/**fine_tuning.sh***](MMGen_train/modules/clmp/fine_tuning.sh) before proceeding with fine-tuning.
 ```bash
 bash fine_tuning.sh
 ```
