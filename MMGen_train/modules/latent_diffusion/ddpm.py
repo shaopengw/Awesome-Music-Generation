@@ -1983,11 +1983,7 @@ class LatentDiffusion(DDPM):
                     if 'film_clap_cond1' in unconditional_conditioning:
                         unconditional_conditioning['film_clap_cond1'] = unconditional_conditioning['film_clap_cond1'].repeat(1, 1, 2)
 
-                
-                # print("unconditional_conditioning-++++++++++++", unconditional_conditioning.keys())
-
                 fnames = list(super().get_input(batch, "fname"))
-                # print("c['film_clap_cond1'].shape=======22222222222222222",c['film_clap_cond1'].shape)
                 samples, _ = self.sample_log(
                     cond=c,
                     batch_size=batch_size,
@@ -2029,20 +2025,6 @@ class LatentDiffusion(DDPM):
                 self.save_waveform(waveform, waveform_save_path, name=fnames)
         return waveform_save_path
 
-    
-    # def on_train_epoch_end(self, outputs = None):
-    
-    #     self.model.on_epoch_end()
-    #     import json
-    #     import os
-    #     # epoch_num = self.current_epoch
-    #     save_path = os.path.join(save_path, f"file_name_to_index_epoch_{epoch_num}.json")
-        
-    
-    #     with open(save_path, "w") as f:
-    #         json.dump(self.file_name_to_index, f, indent=4)
-        
-        # print(f"File name to index mapping saved for epoch {epoch_num} at {save_path}")
         
 class DiffusionWrapper(pl.LightningModule):
     def __init__(self, diff_model_config, conditioning_key):
@@ -2076,64 +2058,10 @@ class DiffusionWrapper(pl.LightningModule):
 
         xc = x
         y = None
-        
-        # print("x shape:", x.shape)
 
-        # sys.exit()
-
-        # # 8.19
-        
-        # if x.shape[1] == 1:
-        
-        #     cond_dict.pop('film_clap_cond2')
-        #     print("cond_dict after pop:", cond_dict.keys())
-        # else:        
-        
-
-        
-        #     identifiers = [os.path.splitext(os.path.basename(id))[0] for id in identifiers]
-
-        
-        #     scann_cond_vectors = []
-        #     for id in identifiers:
-        #         if id in file_name_to_index:
-        #             scann_cond_vectors.append(scann_results[file_name_to_index[id]])
-        #         else:
-        #             print(f"Warning: {id} not found in JSON file. Generating random vector.")
-        #             random_vector = np.random.randn(scann_results.shape[1])
-        #             scann_cond_vectors.append(random_vector)
-
-        
-        #     scann_cond_vectors = torch.tensor(scann_cond_vectors, dtype=torch.float32).to(self.device)
-
-        
-        #     if 'film_clap_cond1' in cond_dict:
-        #         assert cond_dict['film_clap_cond1'].shape[0] == scann_cond_vectors.shape[0], "Mismatch in batch size between film_clap_cond1 and scann_cond_vectors"
-                
-        
-        #         if len(cond_dict['film_clap_cond1'].shape) == 3:
-        
-                
-        #         cond_dict['film_clap_cond1'] = torch.cat((cond_dict['film_clap_cond1'], scann_cond_vectors), dim=-1)
-        #     else:
-        #         cond_dict['film_clap_cond1'] = scann_cond_vectors
-
-        
-        #     if 'film_clap_cond2' in cond_dict:
-        #         del cond_dict['film_clap_cond2']
-
-        #     print("cond_dict after processing:", cond_dict.keys())
-        
         context_list, attn_mask_list = [], []
-        # print("forward method cond_dict before processing:", cond_dict.keys())
 
-        # 
         conditional_keys = cond_dict.keys()
-
-
-        # print("conditional_keys:",cond_dict.keys())
-
-
 
         for key in conditional_keys:
             if "concat" in key:
@@ -2163,19 +2091,12 @@ class DiffusionWrapper(pl.LightningModule):
             else:
                 raise NotImplementedError()
         
-        
-        # sys.exit()
+
 
         out = self.diffusion_model(
             xc, t, context_list=context_list, y=y, context_attn_mask_list=attn_mask_list
         )
 
-        # 8.18
-        
-        # if y is not None:
-        #     y_np = y.detach().cpu().numpy()
-        #     self.all_y_values.append(y_np)
-        
         return out
 
     # def on_epoch_end(self):
