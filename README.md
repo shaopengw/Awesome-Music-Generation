@@ -261,7 +261,7 @@ Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt
 The ckpt of `.faiss` and `.npy` in our huggingface, please click [here](https://huggingface.co/ManzhenWei/MG2/tree/main)
 
 ### Finetuning of the pretrained model
-You can finetune with our pretrained model, the checkpoint of model is `mg2-diffusion-checkpoint.ckpt`, please click [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt)
+You can finetune with our pretrained model, the checkpoint of model is `mg2-diffusion-checkpoint.ckpt`, please click [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt) to download.
 
 ```bash
 python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml --reload_from_ckpt data/checkpoints/mg2-diffusion-checkpoint.ckpt
