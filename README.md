@@ -249,7 +249,8 @@ After CLMP model training or fine-tuning, you'll need to generate embeddings and
 python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
 ```
 In `BreadcrumbsAwesome-Music-Generation/MMGen_train/train/latent_diffusion.py`, if you want to evaluate, please 'only_validation = True'; if you want to train, please 'only_validation = False'.
-Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt path of '.faiss' and 'npy'
+
+Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt path of '.faiss' and '.npy'
 
 ```bash
  # change the melody_npy and melody.faiss to the local path
@@ -257,8 +258,7 @@ Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt
         melody_builder = FaissDatasetBuilder(melody_npy)
         melody_builder.load_index("MMGen/melody.faiss")
 ```
-This section explains the training and fine-tuning process for the MG² diffusion model.
-coming soon...
+The ckpt of '.faiss' and '.npy' in our huggingface, please click [here](https://huggingface.co/ManzhenWei/MG2/tree/main)
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
