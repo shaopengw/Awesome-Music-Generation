@@ -1261,7 +1261,6 @@ class LatentDiffusion(DDPM):
                     xc, key=cond_model_key, unconditional_cfg=unconditional_cfg
                 )
 
-                # print("get_input c shape", c.shape)
 
                 # cond_dict will be used to condition the diffusion model
                 # If one conditional model return multiple conditioning signal
@@ -1288,13 +1287,11 @@ class LatentDiffusion(DDPM):
             result = melody_builder.search(query[i].reshape(1, -1), k=1)
             retrieved_vectors.append(melody_npy[result['indices']].reshape(-1))
 
-
         retrieved_vectors = np.array(retrieved_vectors)
         retrieved_vectors = torch.tensor(retrieved_vectors, dtype=torch.float32).to(self.device)
         retrieved_vectors = retrieved_vectors.unsqueeze(1)
 
         cond_dict['film_clap_cond1'] = torch.cat((cond_dict['film_clap_cond1'], retrieved_vectors), dim=-1)
-
         out = [z, cond_dict]
 
         if return_decoding_output:
@@ -2356,15 +2353,3 @@ class LatentDiffusionVAELearnable(LatentDiffusion):
             on_epoch=False,
         )
 
-
-# if __name__ == "__main__":
-#     import yaml
-
-#     model_config = "/mnt/fast/nobackup/users/hl01486/projects/general_audio_generation/stable-diffusion/models/ldm/text2img256/config.yaml"
-#     model_config = yaml.load(open(model_config, "r"), Loader=yaml.FullLoader)
-
-#     latent_diffusion = LatentDiffusion(**model_config["model"]["params"])
-
-#     import ipdb
-
-#     ipdb.set_trace()
