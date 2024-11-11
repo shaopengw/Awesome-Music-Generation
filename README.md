@@ -258,7 +258,7 @@ Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt
         melody_builder = FaissDatasetBuilder(melody_npy)
         melody_builder.load_index("MMGen/melody.faiss")
 ```
-The ckpt of '.faiss' and '.npy' in our huggingface, please click [here](https://huggingface.co/ManzhenWei/MG2/tree/main)
+The ckpt of `.faiss` and `.npy` in our huggingface, please click [here](https://huggingface.co/ManzhenWei/MG2/tree/main)
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
