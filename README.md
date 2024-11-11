@@ -259,12 +259,21 @@ Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt
         melody_builder.load_index("MMGen/melody.faiss")
 ```
 The ckpt of `.faiss` and `.npy` in our huggingface, please click [here](https://huggingface.co/ManzhenWei/MG2/tree/main)
+
+### Finetuning of the pretrained model
+You can finetune with our pretrained model, the checkpoint of model is `mg2-diffusion-checkpoint.ckpt`, please click [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt)
+
+```bash
+python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml --reload_from_ckpt data/checkpoints/mg2-diffusion-checkpoint.ckpt
+```
+Note that the pretrained of MG<sup>2</sup> are not permitted for commercial use.
+
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
 - [x] Quick start (Inference)
 - [x] Training Datasets
-- [ ] Training/fine-tuning code
+- [x] Training/fine-tuning code
 - [x] Online free generation service
 
 
