@@ -244,7 +244,11 @@ After CLMP model training or fine-tuning, you'll need to generate embeddings and
    your_path/Awesome-Music-Generation/MMGen_train/modules/clmp/faiss_indexing/faiss_indices
    ```
 
-### Latent Diffusion
+### Train the MG<sup>2</sup> diffusion model
+```bash
+python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
+```
+
 This section explains the training and fine-tuning process for the MG² diffusion model.
 coming soon...
 ## Todo List
