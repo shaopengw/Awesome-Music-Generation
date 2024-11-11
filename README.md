@@ -248,7 +248,7 @@ After CLMP model training or fine-tuning, you'll need to generate embeddings and
 ```bash
 python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
 ```
-In `BreadcrumbsAwesome-Music-Generation/MMGen_train/train/latent_diffusion.py`, if you want to evaluate, please `only_validation = True`; if you want to train, please `only_validation = False`.
+In `MMGen_train/train/latent_diffusion.py`, if you want to evaluate, please `only_validation = True`; if you want to train, please `only_validation = False`.
 
 Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt path of `.faiss` and `.npy`
 
