@@ -262,6 +262,7 @@ Afterwards, you can run the following command to train from scratch：
 ```bash
 python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
 ```
+Regarding to training dataset, please refer to [Dataset](#dataset) section
 
 ### Finetuning of the pretrained model
 You can also finetune with our pretrained model, the checkpoint is `mg2-diffusion-checkpoint.ckpt`, which can be found [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt).
@@ -271,7 +272,6 @@ Then, you can run the following command to finetune your own model:
 python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml --reload_from_ckpt data/checkpoints/mg2-diffusion-checkpoint.ckpt
 ```
 Noted that MG<sup>2</sup> is not permitted for commercial use.
-
 ## Todo List
 - [x] Demo website
 - [x] Huggingface checkpoints
