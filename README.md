@@ -244,13 +244,12 @@ After CLMP model training or fine-tuning, you'll need to generate embeddings and
    your_path/Awesome-Music-Generation/MMGen_train/modules/clmp/faiss_indexing/faiss_indices
    ```
 
-### Train the MG<sup>2</sup> diffusion model
-```bash
-python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
-```
-In `MMGen_train/train/latent_diffusion.py`, if you want to evaluate, please set `only_validation = True`; if you want to train, please set `only_validation = False`.
+### Diffusion module
+Before the training or finetuning of diffusion module, you should prepare required files and replace corresponding file paths in scripts.
 
-Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt path of `.faiss` and `.npy`
+First, you should set the mode. In the script `MMGen_train/train/latent_diffusion.py`, for evaluation purpose, please set `only_validation = True`; for training purpose, please set `only_validation = False`.
+
+Then, you should prepare the required files for melody vector database, including `.faiss` and `.npy`, which can be found in [HuggingFace](https://huggingface.co/ManzhenWei/MG2/tree/main). Please replace the path of `.faiss` and `.npy` in script `MMGen_train/modules/latent_diffusion/ddpm.py`
 
 ```bash
  # change the melody_npy and melody.faiss to the local path
@@ -258,15 +257,20 @@ Note: In `MMGen_train/modules/latent_diffusion/ddpm.py`, please change your ckpt
         melody_builder = FaissDatasetBuilder(melody_npy)
         melody_builder.load_index("MMGen/melody.faiss")
 ```
-The ckpt of `.faiss` and `.npy` in our huggingface, please click [here](https://huggingface.co/ManzhenWei/MG2/tree/main)
+
+Afterwards, you can run the following command to train from scratch：
+```bash
+python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
+```
 
 ### Finetuning of the pretrained model
-You can finetune with our pretrained model, the checkpoint of model is `mg2-diffusion-checkpoint.ckpt`, please click [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt) to download.
+You can also finetune with our pretrained model, the checkpoint is `mg2-diffusion-checkpoint.ckpt`, which can be found [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt).
 
+Then, you can run the following command to finetune your own model:
 ```bash
 python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml --reload_from_ckpt data/checkpoints/mg2-diffusion-checkpoint.ckpt
 ```
-Note that the pretrained of MG<sup>2</sup> are not permitted for commercial use.
+Noted that MG<sup>2</sup> is not permitted for commercial use.
 
 ## Todo List
 - [x] Demo website
