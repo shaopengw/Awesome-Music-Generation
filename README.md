@@ -299,7 +299,7 @@ We sincerely acknowledge the developers of the following open-source code bases.
 
 ```bibtex
 @article{wei2024melodyneedmusicgeneration,
-      title={Melody Is All You Need For Music Generation}, 
+      title={Melody-Guided Music Generation}, 
       author={Shaopeng Wei and Manzhen Wei and Haoyu Wang and Yu Zhao and Gang Kou},
       year={2024},
       eprint={2409.20196},
