@@ -6,7 +6,6 @@
 
 🎉 We've released the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet) dataset. \[2024-11-08\]
 
-🎉 We've released the [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset! Come and try it out~ 🎵 \[2024-11-05\]
 
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
