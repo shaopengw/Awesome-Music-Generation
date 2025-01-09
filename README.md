@@ -18,9 +18,6 @@
 &ensp; &rarr; &ensp; 
 <a href="https://huggingface.co/ManzhenWei/MG2"><img src="https://img.shields.io/static/v1?label=CKPT&message=huggingface&color=yellow&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here!  
 
-&ensp; &rarr; &ensp; 
-<a href="https://huggingface.co/datasets/ManzhenWei/MusicSet"><img src="https://img.shields.io/static/v1?label=Dataset&message=MusicSet&color=green&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here! 
-
 
 
 
@@ -96,16 +93,14 @@ bash quick_start.sh
 Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
 ## Dataset
-### MusicSet
-We introduce the newly proposed [MusicSet](https://huggingface.co/datasets/ManzhenWei/MusicSet) dataset, featuring approximately 150,000 high-quality 10-second music-melody-text pairs. 
 ### Dataset structure of CLMP
-We propose CLMP (Contrastive Language-Music Pretraining) to align text description, music waveform and melody before the training of diffusion module. We utilize the [Webdataset](https://github.com/webdataset/webdataset) as a dataloader for music waveform and text description, and we use another dataloader for melody. The MusicSet has been orginized as following for the traning of CLMP:  
+We propose CLMP (Contrastive Language-Music Pretraining) to align text description, music waveform and melody before the training of diffusion module. We utilize the [Webdataset](https://github.com/webdataset/webdataset) as a dataloader for music waveform and text description, and we use another dataloader for melody. The dataset has been orginized as following for the traning of CLMP:  
 
 ```bash
 # Ensure that the training data packaged with Webdataset format is orginized as following:
 clmp/
 └── dataset/
-    └── MusicSet/
+    └── MusicCaps/
         └──train/pretrain0.tar
                  pretrain1.tar
                  pretrain2.tar
@@ -126,7 +121,7 @@ Awesome-Music-Generation/
                    00009570.wav
                    ...
        └── metadata/dataset_root.json
-           └── MusicSet/
+           └── MusicCaps/
                └── datafiles/train.json
                              valid.json
                              test.json
@@ -134,14 +129,14 @@ Awesome-Music-Generation/
 Below is an example of dataset_root.json:
 ```bash
 {
-    "MusicSet": "/mnt/data/wmz/Awesome-Music-Generation/data/dataset/audioset",
+    "MusicCaps": "/mnt/data/wmz/Awesome-Music-Generation/data/dataset/audioset",
     "comments": {},
     "metadata": {
       "path": {
-        "MusicSet": {
-          "train": "./data/dataset/metadata/MusicSet/datafiles/train.json",
-          "test": "./data/dataset/metadata/MusicSet/datafiles/test.json",
-          "val": "./data/dataset/metadata/MusicSet/datafiles/valid.json",
+        "MusicCaps": {
+          "train": "./data/dataset/metadata/MusicCaps/datafiles/train.json",
+          "test": "./data/dataset/metadata/MusicCaps/datafiles/test.json",
+          "val": "./data/dataset/metadata/MusicCaps/datafiles/valid.json",
           "class_label_indices": ""
         }
       }
@@ -168,9 +163,9 @@ Below is an example of train.json:
 }
 ```
 ### MelodySet
-We will release the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet), containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets.  MelodySet is a subset of the MusicSet Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
+We release the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet), containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets.  Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
 
-The orginization of music waveform and text description are same as that in MusicSet. Thus we only show the dataset structure of melody part as following:
+The orginization of music waveform and text description are same as that in previous Dataset section. Thus we only show the dataset structure of melody part as following:
 ```bash
 your_path/
 └── melody_text/00040020.txt
@@ -297,7 +292,7 @@ We sincerely acknowledge the developers of the following open-source code bases.
 ## Citation
 
 ```bibtex
-@article{wei2024melodyneedmusicgeneration,
+@article{wei2024melody,
       title={Melody-Guided Music Generation}, 
       author={Shaopeng Wei and Manzhen Wei and Haoyu Wang and Yu Zhao and Gang Kou},
       year={2024},
