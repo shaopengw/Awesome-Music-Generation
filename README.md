@@ -93,6 +93,8 @@ bash quick_start.sh
 Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
 ## Dataset
+We have uploaded the training, validation, and testing datasets used for MusicCaps and MusicBench to [HuggingFace](https://huggingface.co/datasets/ManzhenWei/MG2-Dataset). 
+
 ### Dataset structure of CLMP
 We propose CLMP (Contrastive Language-Music Pretraining) to align text description, music waveform and melody before the training of diffusion module. We utilize the [Webdataset](https://github.com/webdataset/webdataset) as a dataloader for music waveform and text description, and we use another dataloader for melody. The dataset has been orginized as following for the traning of CLMP:  
 
