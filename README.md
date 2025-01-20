@@ -88,6 +88,13 @@ chmod +x quick_start.sh
 ```bash
 bash quick_start.sh
 ```
+### note: loading the melody_npy in ddpm.py
+
+```bash
+melody_npy = np.load("your_path/melody.npy")
+```
+Download melody.npy from https://huggingface.co/ManzhenWei/MG2/tree/main and replace the path in ddpm.py with your local path.
+
 ### Allow the script to run for several minutes. Upon completion, the results will be available in the following directory:
 ```bash
 Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
