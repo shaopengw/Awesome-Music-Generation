@@ -1789,33 +1789,20 @@ class LatentDiffusion(DDPM):
         if len(filename) > max_length:
             return filename[:max_length]
         return filename
-    
     def save_waveform(self, waveform, savepath, name="outwav"):
-        generated_paths = []  
-        
         for i in range(waveform.shape[0]):
             if type(name) is str:
-                
-                max_filename_length = 30  
+                max_filename_length = 25 
                 truncated_name = self.truncate_filename(name, max_filename_length)
                 
                 path = os.path.join(
                     savepath, "%s_%s_%s.wav" % (self.global_step, i, truncated_name)
                 )
-            
+
             elif type(name) is list:
-                max_filename_length = 30  
+                max_filename_length = 25  
                 truncated_basename = self.truncate_filename(os.path.basename(name[i]), max_filename_length)
 
-                # path = os.path.join(
-                #     savepath,
-                #     "%s.wav"
-                #     % (
-                #         os.path.basename(name[i])
-                #         if (not ".wav" in name[i])
-                #         else os.path.basename(name[i]).split(".")[0]
-                #     ),
-                # )
                 if ".wav" in truncated_basename:
                     truncated_basename = truncated_basename.split(".")[0]
                 path = os.path.join(
@@ -1823,7 +1810,6 @@ class LatentDiffusion(DDPM):
                     "%s.wav" % truncated_basename,
                 )
             
-
             else:
                 raise NotImplementedError
             todo_waveform = waveform[i, 0]
@@ -1831,9 +1817,52 @@ class LatentDiffusion(DDPM):
                 todo_waveform / np.max(np.abs(todo_waveform))
             ) * 0.8  # Normalize the energy of the generation output
             
-            generated_paths.append(path)# wmz
             sf.write(path, todo_waveform, samplerate=self.sampling_rate)
-        return generated_paths # wmz
+            
+    # def save_waveform(self, waveform, savepath, name="outwav"):
+    #     generated_paths = []  
+        
+    #     for i in range(waveform.shape[0]):
+    #         if type(name) is str:
+                
+    #             max_filename_length = 30  
+    #             truncated_name = self.truncate_filename(name, max_filename_length)
+                
+    #             path = os.path.join(
+    #                 savepath, "%s_%s_%s.wav" % (self.global_step, i, truncated_name)
+    #             )
+            
+    #         elif type(name) is list:
+    #             max_filename_length = 30  
+    #             truncated_basename = self.truncate_filename(os.path.basename(name[i]), max_filename_length)
+
+    #             # path = os.path.join(
+    #             #     savepath,
+    #             #     "%s.wav"
+    #             #     % (
+    #             #         os.path.basename(name[i])
+    #             #         if (not ".wav" in name[i])
+    #             #         else os.path.basename(name[i]).split(".")[0]
+    #             #     ),
+    #             # )
+    #             if ".wav" in truncated_basename:
+    #                 truncated_basename = truncated_basename.split(".")[0]
+    #             path = os.path.join(
+    #                 savepath,
+    #                 "%s.wav" % truncated_basename,
+    #             )
+            
+
+    #         else:
+    #             raise NotImplementedError
+    #         todo_waveform = waveform[i, 0]
+    #         todo_waveform = (
+    #             todo_waveform / np.max(np.abs(todo_waveform))
+    #         ) * 0.8  # Normalize the energy of the generation output
+            
+    #         generated_paths.append(path)# wmz
+    #         sf.write(path, todo_waveform, samplerate=self.sampling_rate)
+    #     return generated_paths # wmz
     @torch.no_grad()
     def sample_log(
         self,
