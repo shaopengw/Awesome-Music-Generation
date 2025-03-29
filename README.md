@@ -2,22 +2,10 @@
 ![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
 
-🎉 We've updated the CLMP training and fine-tuning code and documentation! Come check it out~ 🚀 \[2024-11-09\]
-
-🎉 We've released the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet) dataset. \[2024-11-08\]
-
 
 ### Try our demo first! 
 &ensp; &rarr; &ensp; 
 <a href="https://awesome-mmgen.github.io/"><img src="https://img.shields.io/static/v1?label=Demo! Check out amazing results&message=MG²&color=purple&logo=github.io"></a> &ensp; &larr; &ensp; Click here!
-
-&ensp; &rarr; &ensp; 
-<a href="https://arxiv.org/abs/2409.20196"><img src="https://img.shields.io/static/v1?label=Paper&message=arXiv.2409&color=red&logo=arXiv"></a> &ensp; &larr; &ensp; Click here!
-
-
-&ensp; &rarr; &ensp; 
-<a href="https://huggingface.co/ManzhenWei/MG2"><img src="https://img.shields.io/static/v1?label=CKPT&message=huggingface&color=yellow&logo=huggingface.co"></a> &ensp; &larr; &ensp; Click here!  
-
 
 
 
@@ -25,14 +13,7 @@ This repository contains the implementation of the music generation model **MG<s
 
 Anyone can use this model to generate personalized background music for their short videos on platforms like TikTok, YouTube Shorts, and Meta Reels. Additionally, it is very cost-effective to fine-tune the model with your own private music dataset.
 
-## Video
-You can watch the introduction video on  
 
-&ensp; &rarr; &ensp; 
-<a href="https://youtu.be/kc2n-ByWB-M?si=U-gjvAuBjD-HOtS7"><img src="https://img.shields.io/static/v1?label=Watch&message=YouTube&color=red&logo=youtube"></a> &ensp; &larr; &ensp; Click here!
-
-&ensp; &rarr; &ensp; 
-<a href="https://www.bilibili.com/video/BV1K84FeBEqo/?share_source=copy_web&vd_source=d808713ed70be6b862e6ccbcb28d2f5b"><img src="https://img.shields.io/static/v1?label=Watch&message=Bilibili&color=blue&logo=bilibili"></a> &ensp; &larr; &ensp; Click here!
 
 ## Online Service
 
@@ -46,22 +27,23 @@ Now you can try music generation with your own prompt on our
 
 ## Quick Start
 
+**[Note]**: In this anonymous repository, we are unable to provide the actual Hugging Face URL at this time. However, the complete code will be made available shortly after the paper is accepted.
+
 To get started with **MG<sup>2</sup>**, follow the steps below:
 
 ### Step 1: Clone the repository
 ```bash
-git clone https://github.com/shaopengw/Awesome-Music-Generation.git
+git clone https://anonymous.4open.science/r/MG2.git
 cd Awesome-Music-Generation
 ```
 
-### Step 2: Set up the Conda environment
-```bash
+### Step 2:
 # Create and activate the environment from the provided environment file
 conda env create -f environment.yml
 conda activate MMGen_quickstart
 ```
 
-### Step 3: Download checkpoints from [huggingface]([https://huggingface.co/ManzhenWei/MMGen](https://huggingface.co/ManzhenWei/MG2))
+### Step 3: Download checkpoints from huggingface
 ```bash
 # Ensure that the checkpoints are stored in the following directory structure
 Awesome-Music-Generation/
@@ -93,14 +75,14 @@ bash quick_start.sh
 ```bash
 melody_npy = np.load("your_path/melody.npy")
 ```
-Download melody.npy from https://huggingface.co/ManzhenWei/MG2/tree/main and replace the path in ddpm.py with your local path.
+Download melody.npy from huggingface and replace the path in ddpm.py with your local path.
 
 ### Allow the script to run for several minutes. Upon completion, the results will be available in the following directory:
 ```bash
 Awesome-Music-Generation/log/latent_diffusion/quick_start/quick_start
 ```
 ## Dataset
-We have uploaded the training, validation, and testing datasets used for MusicCaps and MusicBench to [HuggingFace](https://huggingface.co/datasets/ManzhenWei/MG2-Dataset). 
+We have uploaded the training, validation, and testing datasets used for MusicCaps and MusicBench to HuggingFace. 
 
 ### Dataset structure of CLMP
 We propose CLMP (Contrastive Language-Music Pretraining) to align text description, music waveform and melody before the training of diffusion module. We utilize the [Webdataset](https://github.com/webdataset/webdataset) as a dataloader for music waveform and text description, and we use another dataloader for melody. The dataset has been orginized as following for the traning of CLMP:  
@@ -172,7 +154,7 @@ Below is an example of train.json:
 }
 ```
 ### MelodySet
-We release the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet), containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets.  Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
+We release the MelodySet, containing processed melodies for [MusicCaps](https://huggingface.co/datasets/google/MusicCaps) and [Musicbench](https://huggingface.co/datasets/amaai-lab/MusicBench). We extract the melodies using [basic-pitch](https://github.com/spotify/basic-pitch-ts) and organize them using melody triplets.  Each waveform file `.wav`  has a corresponding melody file`.txt` with same filename prefix. For example, `00040020.wav` corresponds to `00040020.txt`, and all melodies are placed in a single directory.
 
 The orginization of music waveform and text description are same as that in previous Dataset section. Thus we only show the dataset structure of melody part as following:
 ```bash
@@ -251,7 +233,7 @@ Before the training or finetuning of diffusion module, you should prepare requir
 
 First, you should set the mode. In the script `MMGen_train/train/latent_diffusion.py`, for evaluation purpose, please set `only_validation = True`; for training purpose, please set `only_validation = False`.
 
-Then, you should prepare the required files for melody vector database, including `.faiss` and `.npy`, which can be found in [HuggingFace](https://huggingface.co/ManzhenWei/MG2/tree/main). Please replace the path of `.faiss` and `.npy` in script `MMGen_train/modules/latent_diffusion/ddpm.py`
+Then, you should prepare the required files for melody vector database, including `.faiss` and `.npy`, which can be found in HuggingFace. Please replace the path of `.faiss` and `.npy` in script `MMGen_train/modules/latent_diffusion/ddpm.py`
 
 ```bash
  # change the melody_npy and melody.faiss to the local path
@@ -267,7 +249,7 @@ python3 MMGen_train/train/latent_diffusion.py -c MMGen_train/config/train.yaml
 Regarding to training dataset, please refer to [Dataset](#dataset) section
 
 ### Finetuning of the pretrained model
-You can also finetune with our pretrained model, the checkpoint is `mg2-diffusion-checkpoint.ckpt`, which can be found [here](https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-diffusion-checkpoint.ckpt).
+You can also finetune with our pretrained model, the checkpoint is `mg2-diffusion-checkpoint.ckpt`, which can be found here.
 
 Then, you can run the following command to finetune your own model:
 ```bash
@@ -296,17 +278,6 @@ We sincerely acknowledge the developers of the following open-source code bases.
 - [https://github.com/jik876/hifi-gan](https://github.com/jik876/hifi-gan)
 - [https://github.com/facebookresearch/faiss](https://github.com/facebookresearch/faiss)
 - [https://mtg.github.io/mtg-jamendo-dataset](https://mtg.github.io/mtg-jamendo-dataset)
->The research is supported by the Key Technologies Research and Development Program under Grant No. 2020YFC0832702, and National Natural Science Foundation of China under Grant Nos. 71910107002, 62376227, 61906159, 62302400, 62176014, and Sichuan Science and Technology Program under Grant No. 2023NSFSC0032, 2023NSFSC0114, and Guanghua Talent Project of Southwestern University of Finance and Economics.
 
-## Citation
 
-```bibtex
-@article{wei2024melody,
-      title={Melody-Guided Music Generation}, 
-      author={Shaopeng Wei and Manzhen Wei and Haoyu Wang and Yu Zhao and Gang Kou},
-      year={2024},
-      eprint={2409.20196},
-      archivePrefix={arXiv},
-      primaryClass={cs.SD},
-      url={https://arxiv.org/abs/2409.20196}, 
-}
+

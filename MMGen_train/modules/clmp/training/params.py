@@ -551,14 +551,14 @@ def parse_args():
         default=None,
         help="For selecting levels of augmented text. Type is among ['all', 'augment_only', 'none']",
     )
-    # (WangHaoyu): path to melody file
+    # (xxxxx): path to melody file
     parser.add_argument(
         "--melody-path",
         type=str,
         default = None,
         help="path to the melody text file", 
     )
-    # (WangHaoyu): if True, just align melody and audio
+    # (xxxxx): if True, just align melody and audio
     parser.add_argument(
         "--drop-text",
         type=bool,

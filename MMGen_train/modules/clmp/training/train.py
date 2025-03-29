@@ -373,7 +373,7 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                 "all_audio_features": [],
             }  # cumu
             
-            # WangHaoyuuu
+            # xxxxxuu
             if args.melody_path:
                 eval_info["all"]["all_melody_features"] = []  # Add storage for melody_features
 
@@ -416,7 +416,7 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                                 "all_audio_features": [],
 
                             }
-                            # WangHaoyuuu
+                            # xxxxxuu
                             if args.melody_path:
                                 eval_info[name]["all_melody_features"] = []
 
@@ -510,7 +510,7 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                                 )
                                 if text_features is not None:  # Ensure text features exist before adding
                                     eval_info[n]["all_text_features"].append(text_features.cpu())
-                                # WangHaoyuuu
+                                # xxxxxuu
                                 if melody_features is not None:# Ensure melody_features variable
                                     eval_info[n]["all_melody_features"].append(
                                         melody_features.cpu()  )
@@ -538,7 +538,7 @@ def evaluate(model, data, epoch, args, tb_writer=None):
                                     )
                                 )
 
-                                # WangHaoyuuu
+                                # xxxxxuu
                                 if text_features is not None: # Ensure text features list exists and is not empty before concatenation
                                     eval_info[n]["all_text_features"].append(
                                     text_features.cpu().index_select(0, torch.tensor(idx).long()))
@@ -655,7 +655,7 @@ def get_metrics(
     audio_features_mlp=None,
     text_features_mlp=None,
     logit_scale_t=None,
-    melody_features=None,  # WangHaoyuuu: Add melody_features parameter
+    melody_features=None,  # xxxxxuu: Add melody_features parameter
     mlp_loss=False,
 ):
     metrics = {}
@@ -689,7 +689,7 @@ def get_metrics(
         ground_truth = torch.arange(len(text_features)).view(-1, 1)
 
     else:
-        # WangHaoyuuu: Calculate logits between audio and text
+        # xxxxxuu: Calculate logits between audio and text
         # When both audio_features and text_features exist, calculate logits between audio and text
         logits_per_audio_text = None
         logits_per_text_audio = None

@@ -13,7 +13,7 @@ class FaissDatasetBuilder:
         self.batch_size = batch_size
 
     def build_index(self):
-        print("WangHaoyu: Start to build index")
+        print("xxxxx: Start to build index")
         if self.index_type == 'Flat':
             self.index = faiss.IndexFlatL2(self.dimension)
         elif self.index_type == 'IVF':
@@ -37,7 +37,7 @@ class FaissDatasetBuilder:
     def search(self, query, k=5):
         
         if self.index is None:
-            raise ValueError("WangHaoyu: Index is not built. Please call build_index() method.")
+            raise ValueError("xxxxx: Index is not built. Please call build_index() method.")
         
         if isinstance(query, np.ndarray):
             query = query.astype(np.float32)
@@ -53,9 +53,9 @@ class FaissDatasetBuilder:
         }
 
     def batch_search(self, queries, k=5):
-        print("WangHaoyu: Start to batch search")
+        print("xxxxx: Start to batch search")
         if self.index is None:
-            raise ValueError("WangHaoyu: Index is not built. Please call build_index() method.")
+            raise ValueError("xxxxx: Index is not built. Please call build_index() method.")
         
         if isinstance(queries, np.ndarray):
             queries = queries.astype(np.float32)
@@ -71,9 +71,9 @@ class FaissDatasetBuilder:
         }
 
     def save_index(self, filename):
-        print("WangHaoyu: Start to save index")
+        print("xxxxx: Start to save index")
         if self.index is None:
-            raise ValueError("WangHaoyu: Index is not built. Please call build_index() method.")
+            raise ValueError("xxxxx: Index is not built. Please call build_index() method.")
         faiss.write_index(self.index, filename)
 
     def load_index(self, filename):

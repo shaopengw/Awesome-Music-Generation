@@ -7,7 +7,6 @@
 # --resume: Path to pre-trained model checkpoint
 
 # We provide a checkpoint for fine-tuning:
-# https://huggingface.co/ManzhenWei/MG2/blob/main/mg2-clmp.pt
 # Usage:
 # --amodel HTSAT-base
 # --resume path/to/mg2-clmp.pt
@@ -15,7 +14,7 @@
 # Dataset Configuration Parameters:
 # --datasetnames: Dataset identifier
 # --datasetpath: Root directory containing dataset
-# download dataset from: https://huggingface.co/datasets/ManzhenWei/MusicSet
+# download dataset from huggingface
 #
 # Example directory structure:
 # /mnt/data/dataset/MusicSet
@@ -26,7 +25,7 @@
 
 # Melody Configuration Parameter
 # --melody-path: Path to the melody file containing melody information
-# Download melody data from: https://huggingface.co/datasets/ManzhenWei/MelodySet
+# Download melody data from huggingface
 #
 # Example directory structure:
 # /mnt/data/melody/melody.txt

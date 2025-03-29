@@ -328,21 +328,21 @@ class ClipLoss(nn.Module):
                 loss_components = []
                 if logits_per_audio_text is not None:
                     loss_components.append(F.cross_entropy(logits_per_audio_text, labels))
-                    # print("WangHaoyu: Successfully calculate the similarity score between audio and text:", F.cross_entropy(logits_per_audio_text, labels))
+                    # print("xxxxx: Successfully calculate the similarity score between audio and text:", F.cross_entropy(logits_per_audio_text, labels))
                     loss_components.append(F.cross_entropy(logits_per_text_audio, labels))
-                    # print("WangHaoyu: Successfully calculate the similarity score between text and audio:", F.cross_entropy(logits_per_text_audio, labels))
+                    # print("xxxxx: Successfully calculate the similarity score between text and audio:", F.cross_entropy(logits_per_text_audio, labels))
 
                 if logits_per_melody_audio is not None:
                     loss_components.append(F.cross_entropy(logits_per_melody_audio, labels))
-                    # print("WangHaoyu: Successfully calculate the similarity score between audio and melody:", F.cross_entropy(logits_per_melody_audio, labels))
+                    # print("xxxxx: Successfully calculate the similarity score between audio and melody:", F.cross_entropy(logits_per_melody_audio, labels))
                     loss_components.append(F.cross_entropy(logits_per_audio_melody, labels))
-                    # print("WangHaoyu: Successfully calculate the similarity score between melody and audio:", F.cross_entropy(logits_per_audio_melody, labels))
+                    # print("xxxxx: Successfully calculate the similarity score between melody and audio:", F.cross_entropy(logits_per_audio_melody, labels))
 
                 if logits_per_text_melody is not None:
                     loss_components.append(F.cross_entropy(logits_per_text_melody, labels))
-                    # print("WangHaoyu: Successfully calculate the similarity score between text and melody:", F.cross_entropy(logits_per_text_melody, labels))
+                    # print("xxxxx: Successfully calculate the similarity score between text and melody:", F.cross_entropy(logits_per_text_melody, labels))
                     loss_components.append(F.cross_entropy(logits_per_melody_text, labels))
-                    # print("WangHaoyu: Successfully calculate the similarity score between melody and text:", F.cross_entropy(logits_per_melody_text, labels))
+                    # print("xxxxx: Successfully calculate the similarity score between melody and text:", F.cross_entropy(logits_per_melody_text, labels))
                 if loss_components:
                     total_loss = sum(loss_components)/ len(loss_components)
                 

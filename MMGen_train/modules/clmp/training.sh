@@ -19,7 +19,7 @@
 # Dataset Configuration Parameters:
 # --datasetnames: Dataset identifier
 # --datasetpath: Root directory containing dataset
-# Download dataset from: https://huggingface.co/datasets/ManzhenWei/MusicSet
+# Download dataset from huggingface
 #
 # Example directory structure:
 # /mnt/data/dataset/MusicSet
@@ -30,7 +30,7 @@
 
 # Melody Configuration Parameter
 # --melody-path: Path to the melody file containing melody information
-# Download melody data from: https://huggingface.co/datasets/ManzhenWei/MelodySet
+# Download melody data from huggingface
 #
 # Example directory structure:
 # /mnt/data/melody/melody.txt
