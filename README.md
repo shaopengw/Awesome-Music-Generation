@@ -2,6 +2,9 @@
 ![banner](MMGenMMGenBanner.jpg)  
 ## Welcome to MG<sup>2</sup>!
 
+- [One Custom Song](https://onecustomsong.com) - Personalized AI songs, lyric posters, and music-video gifts from a memory or story.
+- [Songtell](https://songtell.art) - Create personalized AI songs and shareable music-video gifts from personal stories.
+
 🎉 We've updated the CLMP training and fine-tuning code and documentation! Come check it out~ 🚀 \[2024-11-09\]
 
 🎉 We've released the [MelodySet](https://huggingface.co/datasets/ManzhenWei/MelodySet) dataset. \[2024-11-08\]
