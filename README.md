@@ -310,3 +310,7 @@ We sincerely acknowledge the developers of the following open-source code bases.
       primaryClass={cs.SD},
       url={https://arxiv.org/abs/2409.20196}, 
 }
+
+## Live Music & Venue Directories
+
+- [No Stairs Please](https://nostairsplease.com/) — Every small stage in all 50 US states, and who books it ([MCP](https://nostairsplease.com/mcp)).
